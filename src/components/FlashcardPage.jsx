@@ -23,6 +23,7 @@ const FlashcardPage = () => {
 
     const handleNextFlashcard = () => {
         setCurrentFlashcardPhrase(generatePhrase(allFlashcards));
+        setFlipped(false);
     };
 
     if (!isLoading && allFlashcards.length <= 0) {
@@ -42,11 +43,14 @@ const FlashcardPage = () => {
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
-            <Flashcard 
-                phrase={currentFlashcardPhrase} 
-                flipped={flipped} 
-                handleFlipState={handleFlipState} 
-            />
+            <div className="flashcard-wrapper">
+                <Flashcard 
+                    phrase={currentFlashcardPhrase} 
+                    flipped={flipped} 
+                    handleFlipState={handleFlipState} 
+                />
+                <Button label="Next" onClick={handleNextFlashcard} />
+            </div>
           )}
         </div>
     );
