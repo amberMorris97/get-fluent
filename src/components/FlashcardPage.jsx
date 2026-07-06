@@ -3,6 +3,7 @@ import Flashcard from './common/Flashcard';
 import generatePhrase from '../utils/generatePhrase';
 import Button from './common/Button';
 import Card from './common/Card';
+import parseFlashcards from '../utils/parseFlashcards';
 
 const FlashcardPage = () => {
     const [allFlashcards, setAllFlashcards] = useState(null);
@@ -11,7 +12,7 @@ const FlashcardPage = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const flashcards = Object.entries({ ... localStorage }).map(flashcard => JSON.parse(flashcard[1]));
+        const flashcards = parseFlashcards({ ...localStorage });
         setAllFlashcards(flashcards);
         setCurrentFlashcardPhrase(generatePhrase(flashcards));
         setIsLoading(false);
@@ -25,6 +26,18 @@ const FlashcardPage = () => {
         setCurrentFlashcardPhrase(generatePhrase(allFlashcards));
         setFlipped(false);
     };
+
+    const removeFlashcard = (e) => {
+        e.stopPropagation();
+        
+        localStorage.removeItem(currentFlashcardPhrase.id);
+
+        const updatedFlashcards = parseFlashcards({ ...localStorage });
+        
+        setAllFlashcards(updatedFlashcards);
+        setCurrentFlashcardPhrase(generatePhrase(updatedFlashcards));
+        setFlipped(false);
+    }
 
     if (!isLoading && allFlashcards.length <= 0) {
         /** TODO: Style "No flashcards" display, link back to home page */
@@ -47,7 +60,8 @@ const FlashcardPage = () => {
                 <Flashcard 
                     phrase={currentFlashcardPhrase} 
                     flipped={flipped} 
-                    handleFlipState={handleFlipState} 
+                    handleFlipState={handleFlipState}
+                    handleRemoveFlashcard={removeFlashcard}
                 />
                 <Button label="Next" onClick={handleNextFlashcard} />
             </div>
