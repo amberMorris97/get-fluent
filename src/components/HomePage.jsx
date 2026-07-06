@@ -11,13 +11,13 @@ const HomePage = () => {
         let phrases = [];
 
         try {
-            const response = await fetch('https://docs.google.com/document/d/1vvDmQqC9iugRJSFhHig45uVciUp4z_UVZ0dUC7NyR18/edit?usp=sharing');
+            const response = await fetch('https://docs.google.com/document/d/1vvDmQqC9iugRJSFhHig45uVciUp4z_UVZ0dUC7NyR18/export?format=txt');
 
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || `ERROR - Status ${response.status}`);
             } else {
-                const data = await response.json();
+                const data = await response.json(); 
                 phrases = data.map((phrase) => {
                     let newPhrase = {
                         id: phrase.id,
@@ -35,16 +35,20 @@ const HomePage = () => {
             setCurrentPhrase(generatePhrase(phrases));
             setIsLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
         fetchPhrases();
     }, []);
 
+    const handleGetNewPhrase = () => {
+        setCurrentPhrase(generatePhrase(allPhrases));
+    };
+
     /* TODO: Style loading element */
     return (
         <div className='home-page'>
-            {isLoading ? <p>Loading...</p> : <PhraseCard phrase={currentPhrase} />}
+            {isLoading ? <p>Loading...</p> : <PhraseCard phrase={currentPhrase} handleGetNewPhrase={handleGetNewPhrase} />}
         </div>
     );
 };

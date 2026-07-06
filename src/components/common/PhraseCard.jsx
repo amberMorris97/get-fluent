@@ -1,12 +1,14 @@
+import Button from './Button';
 import Card from './Card';
 
-const PhraseCard = ({ phrase }) => {
+const PhraseCard = ({ phrase, handleGetNewPhrase }) => {
     return (
         <div className="phrase-card">
           <Card>
-            <h3>Test Phrase 1</h3>
-            <h4>Test Translation 1</h4>
+            <h3>{phrase.phrase}</h3>
+            <h4>{phrase.translation}</h4>
           </Card>
+          <Button label="Get phrase" onClick={handleGetNewPhrase} />
         </div>
     );
 };
