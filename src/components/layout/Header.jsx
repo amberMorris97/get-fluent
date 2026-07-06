@@ -1,6 +1,11 @@
+import NavMenu from "./NavMenu";
+
 const Header = () => {
     return (
-        <h1>Get Fluent</h1>
+        <div className="header">
+            <h1>Get Fluent</h1>
+            <NavMenu />
+        </div>
     );
 };
 
