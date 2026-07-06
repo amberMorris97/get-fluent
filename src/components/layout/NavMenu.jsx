@@ -1,7 +1,20 @@
+import { Link } from "react-router";
+
 const NavMenu = () => {
     return (
         <div>
-            <h2>Nav Menu</h2>
+            <Link to="/">
+              Get Fluent
+            </Link>
+            <Link to="/">
+              Contact
+            </Link>
+            <Link to="/">
+              About
+            </Link>
+            <Link to="/flashcards">
+              Flashcards
+            </Link>
         </div>
     );
 };

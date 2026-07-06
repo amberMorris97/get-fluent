@@ -45,10 +45,26 @@ const HomePage = () => {
         setCurrentPhrase(generatePhrase(allPhrases));
     };
 
+    const addToFlashCards = () => {
+        if (localStorage.getItem(currentPhrase.id)) {
+            /** TODO, Find better way to let user know flashcard exists/disable add button if flashcard already exists */
+            alert('Flashcard already exists!');
+
+            return;
+        }
+        
+        localStorage.setItem(currentPhrase.id, JSON.stringify(currentPhrase));
+        alert('Flashcard added!');
+    }  
+
     /* TODO: Style loading element */
     return (
         <div className='home-page'>
-            {isLoading ? <p>Loading...</p> : <PhraseCard phrase={currentPhrase} handleGetNewPhrase={handleGetNewPhrase} />}
+            {isLoading ? (
+                <p>Loading...</p>
+             ) : (
+             <PhraseCard phrase={currentPhrase} handleGetNewPhrase={handleGetNewPhrase} handleAddToFlashcards={addToFlashCards} />
+            )}
         </div>
     );
 };
