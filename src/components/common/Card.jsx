@@ -1,6 +1,6 @@
-const Card = ({ children }) => {
+const Card = ({ children, onClick }) => {
     return (
-        <div className="card">
+        <div className="card" onClick={onClick}>
             {children}
         </div>
     );
