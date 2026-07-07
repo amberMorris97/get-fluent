@@ -5,7 +5,6 @@ import HomePage from './components/HomePage';
 
 import './App.css';
 import FlashcardPage from './components/FlashcardPage';
-import ContactPage from './components/ContactPage';
 import AboutPage from './components/AboutPage';
 
 function App() {

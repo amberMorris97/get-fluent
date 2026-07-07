@@ -52,7 +52,7 @@ const FlashcardPage = () => {
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
-            <div className="flashcard-wrapper">
+            <div className={`flashcard-wrapper ${flipped ? 'flipped' : ''}`}>
                 <Card 
                     phrase={currentFlashcardPhrase} 
                     flipped={flipped} 
@@ -60,7 +60,13 @@ const FlashcardPage = () => {
                     handleRemoveFlashcard={removeFlashcard}
                     type={'flashcards'}
                 />
+            </div>
+          )}
+
+          {!isLoading && (
+            <div className='flashcard-btns'>
                 <Button label="Next" onClick={handleNextFlashcard} />
+                <Button label="Remove from flashcards" onClick={removeFlashcard} />
             </div>
           )}
         </div>
