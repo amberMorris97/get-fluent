@@ -6,10 +6,10 @@ const NavMenu = () => {
             <Link to="/">
               Get Fluent
             </Link>
-            <Link to="/">
+            <Link to="/contact">
               Contact
             </Link>
-            <Link to="/">
+            <Link to="/about">
               About
             </Link>
             <Link to="/flashcards">

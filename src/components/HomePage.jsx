@@ -54,7 +54,7 @@ const HomePage = () => {
         }
         
         localStorage.setItem(currentPhrase.id, JSON.stringify(currentPhrase));
-        alert('Flashcard added!');
+        alert('Flashcard added!');                      
     }  
 
     /* TODO: Style loading element */
