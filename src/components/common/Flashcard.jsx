@@ -7,7 +7,7 @@ const Flashcard = ({ phrase, handleFlipState, flipped, handleRemoveFlashcard }) 
             <Card onClick={handleFlipState}>
                 {!flipped && <h3>{phrase.phrase}</h3>}
                 {flipped && <h3>{phrase.translation}</h3>}
-            <Button label="Remove from flashcards" onClick={handleRemoveFlashcard} />
+                <Button label="Remove from flashcards" onClick={handleRemoveFlashcard} />
             </Card>
         </div>
     );
