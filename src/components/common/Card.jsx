@@ -19,7 +19,7 @@ const Card = ({ type, phrase, flipped, onClick, handleAddFlashcard }) => {
             <div className="card phraseCard">
                 <h3>{phrase.phrase}</h3>
                 <h4>{phrase.translation}</h4>
-                <Button label="Add to flashcards" onClick={handleAddFlashcard} />
+                <Button label="Add to flashcards" className="add-flashcard-btn btn" onClick={handleAddFlashcard} />
             </div>
         );
     } else {
