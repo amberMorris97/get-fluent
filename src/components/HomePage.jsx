@@ -64,13 +64,13 @@ const HomePage = () => {
             {isLoading ? (
                 <p>Loading...</p>
              ) : (
-                <div>
+                <div className="phrase-card-container">
                     <Card
                         type={'phrases'}
                         phrase={currentPhrase}
                         handleAddFlashcard={addToFlashCards}
                     />
-                    <Button label="Next" onClick={handleGetNewPhrase} />
+                    <Button label="Next" className="next-phrase-btn" onClick={handleGetNewPhrase} />
               </div>
             )}
         </div>

@@ -19,7 +19,6 @@
   height: 250px;
   perspective: 1000px;
   background: transparent;
-  border: none;
   cursor: pointer;
 }
 
@@ -56,7 +55,7 @@
 .flashcard-front {
   background-color: #ffffff;
   color: #333333;
-  border: 1px solid #e2e8f0;
+  border: 1px solid black;
 }
 
  .flashcard-back {
@@ -67,4 +66,33 @@
 
  .flashcard-btns {
   padding: 20px;
+  display: flex;
+  gap: 4em;
+ }
+
+ .next-flashcard-btn,
+ .remove-flashcard-btn {
+    background-color: #1C2541;
+    box-shadow: 0 5px 0 #121729;
+    color: white;
+    border-radius: 12px;
+    border: 1px solid #182038;
+    width: 8vw;
+    height: 5vh;
+ }
+
+ .next-flashcard-btn:active,
+ .remove-flashcard-btn:active {
+    box-shadow: none;
+    transform: translateY(5px);
+ }
+ 
+ .phraseCard {
+    border: 1px solid black;
+ }
+
+ .phrase-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
  }

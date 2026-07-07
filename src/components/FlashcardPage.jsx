@@ -65,8 +65,8 @@ const FlashcardPage = () => {
 
           {!isLoading && (
             <div className='flashcard-btns'>
-                <Button label="Next" onClick={handleNextFlashcard} />
-                <Button label="Remove from flashcards" onClick={removeFlashcard} />
+                <Button label="Next" className="next-flashcard-btn" onClick={handleNextFlashcard} />
+                <Button label="Remove from flashcards" className="remove-flashcard-btn" onClick={removeFlashcard} />
             </div>
           )}
         </div>

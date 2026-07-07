@@ -9,9 +9,6 @@ const NavMenu = () => {
             <Link to="/about">
               About
             </Link>
-            <Link to="/contact">
-              Contact
-            </Link>
             <Link to="/flashcards">
               Flashcards
             </Link>
