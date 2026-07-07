@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Flashcard from './common/Flashcard';
 import generatePhrase from '../utils/generatePhrase';
 import Button from './common/Button';
 import Card from './common/Card';
@@ -29,7 +28,7 @@ const FlashcardPage = () => {
 
     const removeFlashcard = (e) => {
         e.stopPropagation();
-        
+
         localStorage.removeItem(currentFlashcardPhrase.id);
 
         const updatedFlashcards = parseFlashcards({ ...localStorage });
@@ -43,12 +42,9 @@ const FlashcardPage = () => {
         /** TODO: Style "No flashcards" display, link back to home page */
         return (
             <div>
-                <Card>
-                    <h2>No flashcards yet</h2>
-                    <h3>Go add some!</h3>
-                </Card>
+                <Card />
             </div>
-        )
+        );
     }
 
     return (
@@ -57,11 +53,12 @@ const FlashcardPage = () => {
                 <p>Loading...</p>
             ) : (
             <div className="flashcard-wrapper">
-                <Flashcard 
+                <Card 
                     phrase={currentFlashcardPhrase} 
                     flipped={flipped} 
-                    handleFlipState={handleFlipState}
+                    onClick={handleFlipState}
                     handleRemoveFlashcard={removeFlashcard}
+                    type={'flashcards'}
                 />
                 <Button label="Next" onClick={handleNextFlashcard} />
             </div>

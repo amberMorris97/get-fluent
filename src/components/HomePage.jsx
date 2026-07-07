@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import PhraseCard from './common/PhraseCard';
 import generatePhrase from '../utils/generatePhrase';
+import Card from './common/Card';
+import Button from './common/Button';
 
 const HomePage = () => {
     const [allPhrases, setAllPhrases] = useState(null);
@@ -63,7 +64,14 @@ const HomePage = () => {
             {isLoading ? (
                 <p>Loading...</p>
              ) : (
-             <PhraseCard phrase={currentPhrase} handleGetNewPhrase={handleGetNewPhrase} handleAddToFlashcards={addToFlashCards} />
+                <div>
+                    <Card
+                        type={'phrases'}
+                        phrase={currentPhrase}
+                        handleAddFlashcard={addToFlashCards}
+                    />
+                    <Button label="Next" onClick={handleGetNewPhrase} />
+              </div>
             )}
         </div>
     );
