@@ -1,6 +1,11 @@
+import ContactForm from "./common/ContactForm";
+
 const AboutPage = () => {
   return (
-    <div>AboutPage</div>
+    <div className="about-page">
+        <h2>About The App...</h2>
+        <ContactForm />
+    </div>
   );
 };
 

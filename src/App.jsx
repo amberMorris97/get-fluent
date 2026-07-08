@@ -6,6 +6,7 @@ import HomePage from './components/HomePage';
 import './App.css';
 import FlashcardPage from './components/FlashcardPage';
 import AboutPage from './components/AboutPage';
+import Footer from './components/layout/Footer';
 
 function App() {
  
@@ -18,6 +19,7 @@ function App() {
         <Route path="/flashcards" element={<FlashcardPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

@@ -16,9 +16,9 @@ const ContactForm = () => {
     };
 
   return (
-    <div className='form-container'>
+    <div className="form-container">
         <h2>Submit a phrase!</h2>
-        <form>
+        <form className="contact-form">
             <label>
                 First Name: 
                 <input id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} />

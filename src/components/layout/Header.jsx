@@ -2,10 +2,10 @@ import NavMenu from './NavMenu';
 
 const Header = () => {
     return (
-        <div className="header">
+        <header className="header">
             <h1>Get Fluent</h1>
             <NavMenu />
-        </div>
+        </header>
     );
 };
 
