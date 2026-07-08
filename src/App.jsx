@@ -10,7 +10,7 @@ import AboutPage from './components/AboutPage';
 function App() {
  
   return (
-    <div>
+    <div className="app-container">
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

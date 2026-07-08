@@ -65,6 +65,7 @@ const HomePage = () => {
                 <p>Loading...</p>
              ) : (
                 <div className="phrase-card-container">
+                    <h2>Learn A Phrase In Haitian Creole</h2>
                     <Card
                         type={'phrases'}
                         phrase={currentPhrase}

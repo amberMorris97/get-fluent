@@ -49,6 +49,7 @@ const FlashcardPage = () => {
 
     return (
         <div className="flashcard-container">
+            <h2>Flashcards</h2>
             {isLoading ? (
                 <p>Loading...</p>
             ) : (

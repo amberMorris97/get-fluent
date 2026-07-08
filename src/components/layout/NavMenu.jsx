@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const NavMenu = () => {
     return (
-        <div>
+        <div className="nav-menu">
             <Link to="/">
               Get Fluent
             </Link>
