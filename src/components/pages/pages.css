@@ -1,0 +1,26 @@
+.home-page,
+.about-page,
+.flashcard-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-page,
+.about-page,
+.about-page p,
+.home-page-btns {
+    padding: 20px;
+}
+
+.home-page-btns,
+.flashcard-btns {
+  display: flex;
+  gap: 2rem;
+}
+
+.about-page p {
+    font-size: larger;
+    width: 50vw;
+}
+

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router';
 import Header from './components/layout/Header';
-import HomePage from './components/HomePage';
+import HomePage from './components/pages/HomePage';
 
 import './App.css';
-import FlashcardPage from './components/FlashcardPage';
-import AboutPage from './components/AboutPage';
+import FlashcardPage from './components/pages/FlashcardPage';
+import AboutPage from './components/pages/AboutPage';
 import Footer from './components/layout/Footer';
 
 function App() {

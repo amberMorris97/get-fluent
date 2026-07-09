@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import generatePhrase from '../utils/generatePhrase';
-import Button from './common/Button';
-import Card from './common/Card';
-import parseFlashcards from '../utils/parseFlashcards';
+import generatePhrase from '../../utils/generatePhrase';
+import Button from '../common/Button';
+import Card from '../common/Card';
+import parseFlashcards from '../../utils/parseFlashcards';
 
 const FlashcardPage = () => {
     const [allFlashcards, setAllFlashcards] = useState(null);
@@ -44,14 +44,15 @@ const FlashcardPage = () => {
     if (!isLoading && allFlashcards.length <= 0) {
         /** TODO: Style "No flashcards" display, link back to home page */
         return (
-            <div>
-                <Card />
+            <div className="flashcard-container">
+                <Card flipped={flipped} onClick={handleFlipState} />
+                <Button label="Get Fluent" onClick={() => window.location = '/'} />
             </div>
         );
     }
 
     return (
-        <div className="flashcard-container">
+        <div className="flashcard-page">
             <h2>Flashcards</h2>
             {isLoading ? (
                 <p>Loading...</p>

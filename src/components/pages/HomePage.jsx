@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import generatePhrase from '../utils/generatePhrase';
-import Card from './common/Card';
-import Button from './common/Button';
+import generatePhrase from '../../utils/generatePhrase';
+import Card from '../common/Card';
+import Button from '../common/Button';
 
 const HomePage = () => {
     const [allPhrases, setAllPhrases] = useState(null);
@@ -32,9 +32,9 @@ const HomePage = () => {
         } catch (error) {
             console.error(error.message);
         } finally {
+            setIsLoading(false);
             setAllPhrases(phrases);
             setCurrentPhrase(generatePhrase(phrases));
-            setIsLoading(false);
         }
     };
 
@@ -60,21 +60,24 @@ const HomePage = () => {
 
     /* TODO: Style loading element */
     return (
-        <div className='home-page'>
+        <section className='home-page'>
             {isLoading ? (
                 <p>Loading...</p>
              ) : (
-                <div className="phrase-card-container">
+                <>
                     <h2>Learn A Phrase In Haitian Creole</h2>
                     <Card
                         type={'phrases'}
                         phrase={currentPhrase}
                         handleAddFlashcard={addToFlashCards}
                     />
-                    <Button label="Next" className="next-phrase-btn btn" onClick={handleGetNewPhrase} />
-              </div>
+                    <div className='home-page-btns'>
+                        <Button label="Next" className="next-phrase-btn btn" onClick={handleGetNewPhrase} />
+                        <Button label="Add to flashcards" className="add-flashcard-btn btn" onClick={addToFlashCards} />
+                    </div>
+              </>
             )}
-        </div>
+        </section>
     );
 };
 

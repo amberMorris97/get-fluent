@@ -1,11 +1,11 @@
 import Button from './Button';
 
-const Card = ({ type, phrase, flipped, onClick, handleAddFlashcard }) => {
+const Card = ({ type, phrase, flipped, onClick }) => {
     if (type === 'flashcards') {
         return (
             <div className={`card flashcard ${flipped ? 'flipped' : ''}`} onClick={onClick}>
-                <div className="flashcard-inner">
-                    <div className='flashcard-front'>
+                <div className="card-inner flashcard-inner">
+                    <div className="flashcard-front">
                         <h3>{phrase.phrase}</h3>
                     </div>
                     <div className="flashcard-back">
@@ -16,18 +16,24 @@ const Card = ({ type, phrase, flipped, onClick, handleAddFlashcard }) => {
         );
     } else if (type === 'phrases') {
         return (
-            <div className="card phraseCard">
-                <h3>{phrase.phrase}</h3>
-                <h4>{phrase.translation}</h4>
-                <Button label="Add to flashcards" className="add-flashcard-btn btn" onClick={handleAddFlashcard} />
+            <div className="card phrase-card">
+                <div className="card-inner phrase-card-inner">
+                    <h3>{phrase.phrase}</h3>
+                    <h4>{phrase.translation}</h4>
+              </div>
             </div>
         );
     } else {
         return (
-            <div className="card emptyDataResponseCard">
-                <h3>No flashcards yet.</h3>
-                <h4>Go add some!</h4>
-                <Button label="Get Fluent" onClick={() => window.location = '/'} />
+            <div className={`card flashcard ${flipped ? 'flipped' : ''}`} onClick={onClick}>
+                <div className="flashcard-inner">
+                    <div className="flashcard-front">
+                        <h3>No flashcards yet.</h3>
+                    </div>
+                    <div className="flashcard-back">
+                        <h4>Go add some!</h4>
+                    </div>
+                </div>
             </div>
         );
     };

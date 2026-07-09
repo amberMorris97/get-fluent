@@ -1,4 +1,4 @@
-import ContactForm from "./common/ContactForm";
+import ContactForm from "../common/ContactForm";
 
 const AboutPage = () => {
   return (
