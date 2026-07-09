@@ -32,6 +32,9 @@ const FlashcardPage = () => {
         localStorage.removeItem(currentFlashcardPhrase.id);
 
         const updatedFlashcards = parseFlashcards({ ...localStorage });
+
+        /** TODO: popup to alert user */
+        alert('Flashcard removed!');
         
         setAllFlashcards(updatedFlashcards);
         setCurrentFlashcardPhrase(generatePhrase(updatedFlashcards));
