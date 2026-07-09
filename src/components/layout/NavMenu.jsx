@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import Button from '../common/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,7 +27,7 @@ const NavMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleIcon = <FontAwesomeIcon icon="fa-solid fa-align-justify" />;
-
+    
     const toggleNavBar = () => {
         setIsOpen(!isOpen);
     }

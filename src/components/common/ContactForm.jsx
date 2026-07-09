@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
-        firstName: '',
+        name: '',
         email: '',
         phrase: '',
         translation: '',
@@ -20,8 +20,8 @@ const ContactForm = () => {
         <h2>Submit a phrase!</h2>
         <form className="contact-form">
             <label>
-                First Name: 
-                <input id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} />
+                Name: 
+                <input id="name" name="name" value={formData.name} onChange={handleInputChange} />
             </label>
             <label>
                 Email:
@@ -35,7 +35,7 @@ const ContactForm = () => {
                 Translation:
                 <textarea id="translation" name="translation" value={formData.translation} onChange={handleInputChange} />
             </label>
-            <button type="submit">Submit Phrase</button>
+            <button className="btn" type="submit">Submit Phrase</button>
             
         </form>
     </div>
