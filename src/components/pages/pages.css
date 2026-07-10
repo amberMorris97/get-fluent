@@ -44,10 +44,15 @@
         gap: 1em;
     }
 
-
     .home-page h2 {
       font-size: larger;
     }
 
+}
+
+@media (max-width: 766px) {
+    .flashcard-btns {
+        width: 80%;
+    }
 }
 

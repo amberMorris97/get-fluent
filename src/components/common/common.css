@@ -85,6 +85,7 @@
 .flashcard-back {
     border: 1px solid #995FA3;
     border-radius: 12px;
+    padding: 15px;
 }
 
 .flashcard-back {
@@ -101,7 +102,7 @@
     width: 75vw;
   }
 
-  .phraseCard h3 {
+  .phraseCard h3, .flashcard h3 {
     font-size: x-large;
   }
 
