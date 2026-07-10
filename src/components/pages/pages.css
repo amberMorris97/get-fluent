@@ -9,8 +9,13 @@
 .home-page,
 .about-page,
 .about-page p,
-.home-page-btns {
+.home-page-btns,
+.home-page h1 {
     padding: 20px;
+}
+
+.home-page h2 {
+    text-align: center;
 }
 
 .home-page-btns,
@@ -19,8 +24,30 @@
   gap: 2rem;
 }
 
+
 .about-page p {
     font-size: larger;
     width: 50vw;
+    text-align: center;
+}
+
+
+@media (max-width: 767px) {
+    .about-page p {
+        font-size: small;
+        width: 80vw;
+    }
+
+    .home-page-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+
+    .home-page h2 {
+      font-size: larger;
+    }
+
 }
 

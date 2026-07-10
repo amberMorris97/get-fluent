@@ -65,7 +65,7 @@ const HomePage = () => {
                 <p>Loading...</p>
              ) : (
                 <>
-                    <h2>Learn A Phrase In Haitian Creole</h2>
+                    <h2>Learn phrases in Haitian Creole</h2>
                     <Card
                         type={'phrases'}
                         phrase={currentPhrase}

@@ -42,7 +42,7 @@
 
 .phrase-card-inner h3,
 .flashcard-front {
-    font-size: x-large;
+    font-size: xx-large;
     font-family: 'Jacques Francois', serif;
 }
 
@@ -94,4 +94,46 @@
 .flashcard-back h3 {
     font-weight: lighter;
     font-size: x-large;
+}
+
+@media (max-width: 767px) {
+  .phraseCard {
+    width: 75vw;
+  }
+
+  .phraseCard h3 {
+    font-size: x-large;
+  }
+
+  .phraseCard h4 {
+    font-size: large;
+  }
+
+  .flashcard-wrapper {
+    padding: 20px;
+  }
+
+  .flashcard-back {
+    font-weight: lighter;
+  }
+
+  .flashcard {
+    text-align: center;
+  }
+
+  .form-container {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .contact-form {
+    display: flex!important;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }           
+
+  .contact-form input, textarea {
+    width: 40vw;
+  }
 }
