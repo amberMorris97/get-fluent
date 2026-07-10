@@ -1,9 +1,38 @@
-.card {
-  border: 1px solid black;
-  max-width: 25vw;
-  height: 25vh;
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 2em;
 }
+
+
+.btn {
+  background-color: #1C2541;
+  box-shadow: 0 5px 0 #121729;
+  color: white;
+  border-radius: 12px;
+  border: 1px solid #182038;
+  width: 12vw;
+  height: 5vh;
+  cursor: pointer;
+}
+
+.btn:active {
+  box-shadow: none;
+  transform: translateY(5px);
+}
+
+@media (max-width: 767px) {
+
+  .btn {
+    width: 50vw;
+  }
+}
+

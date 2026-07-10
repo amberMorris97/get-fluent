@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import Flashcard from './common/Flashcard';
-import generatePhrase from '../utils/generatePhrase';
-import Button from './common/Button';
-import Card from './common/Card';
-import parseFlashcards from '../utils/parseFlashcards';
+import generatePhrase from '../../utils/generatePhrase';
+import Button from '../common/Button';
+import Card from '../common/Card';
+import parseFlashcards from '../../utils/parseFlashcards';
 
 const FlashcardPage = () => {
     const [allFlashcards, setAllFlashcards] = useState(null);
@@ -29,10 +28,13 @@ const FlashcardPage = () => {
 
     const removeFlashcard = (e) => {
         e.stopPropagation();
-        
+
         localStorage.removeItem(currentFlashcardPhrase.id);
 
         const updatedFlashcards = parseFlashcards({ ...localStorage });
+
+        /** TODO: popup to alert user */
+        alert('Flashcard removed!');
         
         setAllFlashcards(updatedFlashcards);
         setCurrentFlashcardPhrase(generatePhrase(updatedFlashcards));
@@ -42,28 +44,34 @@ const FlashcardPage = () => {
     if (!isLoading && allFlashcards.length <= 0) {
         /** TODO: Style "No flashcards" display, link back to home page */
         return (
-            <div>
-                <Card>
-                    <h2>No flashcards yet</h2>
-                    <h3>Go add some!</h3>
-                </Card>
+            <div className="flashcard-container">
+                <Card flipped={flipped} onClick={handleFlipState} />
+                <Button label="Get Fluent" onClick={() => window.location = '/'} />
             </div>
-        )
+        );
     }
 
     return (
-        <div className="flashcard-container">
+        <div className="flashcard-page">
+            <h2>Flashcards</h2>
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
-            <div className="flashcard-wrapper">
-                <Flashcard 
+            <div className={`flashcard-wrapper ${flipped ? 'flipped' : ''}`}>
+                <Card 
                     phrase={currentFlashcardPhrase} 
                     flipped={flipped} 
-                    handleFlipState={handleFlipState}
+                    onClick={handleFlipState}
                     handleRemoveFlashcard={removeFlashcard}
+                    type={'flashcards'}
                 />
-                <Button label="Next" onClick={handleNextFlashcard} />
+            </div>
+          )}
+
+          {!isLoading && (
+            <div className='flashcard-btns'>
+                <Button label="Next" className="next-flashcard-btn btn" onClick={handleNextFlashcard} />
+                <Button label="Remove from flashcards" className="remove-flashcard-btn btn" onClick={removeFlashcard} />
             </div>
           )}
         </div>

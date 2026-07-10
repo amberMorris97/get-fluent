@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import PhraseCard from './common/PhraseCard';
-import generatePhrase from '../utils/generatePhrase';
+import generatePhrase from '../../utils/generatePhrase';
+import Card from '../common/Card';
+import Button from '../common/Button';
 
 const HomePage = () => {
     const [allPhrases, setAllPhrases] = useState(null);
@@ -31,9 +32,9 @@ const HomePage = () => {
         } catch (error) {
             console.error(error.message);
         } finally {
+            setIsLoading(false);
             setAllPhrases(phrases);
             setCurrentPhrase(generatePhrase(phrases));
-            setIsLoading(false);
         }
     };
 
@@ -54,18 +55,29 @@ const HomePage = () => {
         }
         
         localStorage.setItem(currentPhrase.id, JSON.stringify(currentPhrase));
-        alert('Flashcard added!');
+        alert('Flashcard added!');                      
     }  
 
     /* TODO: Style loading element */
     return (
-        <div className='home-page'>
+        <section className='home-page'>
             {isLoading ? (
                 <p>Loading...</p>
              ) : (
-             <PhraseCard phrase={currentPhrase} handleGetNewPhrase={handleGetNewPhrase} handleAddToFlashcards={addToFlashCards} />
+                <>
+                    <h2>Learn phrases in Haitian Creole</h2>
+                    <Card
+                        type={'phrases'}
+                        phrase={currentPhrase}
+                        handleAddFlashcard={addToFlashCards}
+                    />
+                    <div className='home-page-btns'>
+                        <Button label="Next" className="next-phrase-btn btn" onClick={handleGetNewPhrase} />
+                        <Button label="Add to flashcards" className="add-flashcard-btn btn" onClick={addToFlashCards} />
+                    </div>
+              </>
             )}
-        </div>
+        </section>
     );
 };
 
