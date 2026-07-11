@@ -24,10 +24,15 @@ const FlashcardPage = () => {
     };
 
     const handleNextFlashcard = () => {
-        setFlipped(false);
-        setTimeout(() => {
+        if (flipped) {
+            setTimeout(() => {
+                setCurrentFlashcardPhrase(generatePhrase(allFlashcards));
+            }, 200);
+        } else {
             setCurrentFlashcardPhrase(generatePhrase(allFlashcards));
-        }, 200);
+        }
+
+        setFlipped(false);
     };
 
     const removeFlashcard = (e) => {
