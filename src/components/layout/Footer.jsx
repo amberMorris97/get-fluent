@@ -1,4 +1,4 @@
- const Footer = () => {
+ const Footer = () => { 
     return (
         <footer className="footer">
             <ul>

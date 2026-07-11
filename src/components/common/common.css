@@ -97,6 +97,70 @@
     font-size: x-large;
 }
 
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 50px;
+    z-index: 1000;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.before-you-start {
+    font-family: 'IBM Plex Mono', monospace;
+    color: rgb(200, 29, 37);
+}
+
+.modal-content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.close-modal-btn {
+    width: 10%!important;
+    align-self: flex-end;
+}
+
+.org-link {
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 15px;
+    width: 20vw;
+    margin-top: 10px;
+    transition: transform 0.2ease, box-shadow 0.2 ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.org-link a {
+    text-decoration: none;
+    color: black;
+}
+
+.org-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15)
+}
+
+.modal-border {
+    height: 6px;
+    background-color: rgb(200, 29, 37);
+}
+
+
 @media (max-width: 767px) {
   .phraseCard {
     width: 75vw;
