@@ -29,10 +29,10 @@ function App() {
     <div className="app-container">
       <Header />
       <Modal className="intro-modal" open={isOpen} onClose={() => setIsOpen(false)}>
-        <div className='modal-inner'>
-          <span className='before-you-start'>BEFORE YOU START</span>
-          <h2>Haiti is facing an ongoing humanitarian crisis</h2>
-          <p>
+        <div className="modal-inner">
+          <span className="before-you-start">BEFORE YOU START</span>
+          <h2 className="haiti-aid-title">Haiti is facing an ongoing humanitarian crisis</h2>
+          <p className="haiti-aid-paragraph">
             Armed violence and displacement have disrupted daily life for millions
             of people in Haiti, and access to food, healthcare, and safety remains limited
             in many areas. If you'd like to help, here are a few vetted organiztions working

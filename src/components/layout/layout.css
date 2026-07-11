@@ -23,7 +23,7 @@
 
 .nav-links {
   display: flex;
-  justify-content: space-between;
+  gap: 2em;
 }
 
 .nav-toggle {
@@ -45,7 +45,6 @@
   margin-top: auto;
   bottom: 0;
   position: sticky;
-  ;
 }
 
 .footer ul {

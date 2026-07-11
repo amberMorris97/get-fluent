@@ -43,12 +43,10 @@
 .phrase-card-inner h3,
 .flashcard-front {
     font-size: xx-large;
-    font-family: 'Jacques Francois', serif;
 }
 
 .phrase-card-inner h4 {
     font-size: x-large;
-    font-weight: lighter;
     font-style: italic;
 }
 
@@ -90,13 +88,14 @@
     box-shadow: 10px 20px 1px;
 }
 
+.phrase-card h4,
 .flashcard-back {
-  background-color: #995FA3;
+    font-weight: 300;
 }
 
-.flashcard-back h3 {
-    font-weight: lighter;
-    font-size: x-large;
+.flashcard-back {
+  background-color: #995FA3;
+  font-size: x-large;
 }
 
 .modal-overlay {
@@ -123,12 +122,16 @@
     background-color: #F5EFDD;
     border: 1px solid black;
     border-radius: 12px;
+    overflow: auto;
 }
 
 .flashcard-added-popup,
 .flashcard-removed-popup {
     gap: 2em;
     font-family: 'IBM Plex Mono', monospace;
+    background-color: #F5EFDD;
+    color: #1C2541;                                      
+    font-weight: bolder;
 }
 
 .flashcard-added-popup .btn,
@@ -147,7 +150,7 @@
 }
 
 .close-modal-btn {
-    width: 10%!important;
+    width: 25%!important;
     align-self: flex-end;
 }
 
@@ -201,6 +204,23 @@
 
   .flashcard {
     text-align: center;
+  }
+
+  .before-you-start {
+    font-size: x-small;
+  }
+
+  .haiti-aid-title {
+    font-size: large;
+  }
+
+  .haiti-aid-paragraph {
+    font-size: medium;
+  }
+
+  .org-link {
+    width: 55vw;
+    font-size: small;
   }
 
   .form-container {
