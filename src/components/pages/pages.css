@@ -14,7 +14,7 @@
     padding: 20px;
 }
 
-.home-page h1 {
+.home-page h1, .flashcard-page h2 {
     font-family: 'Space Grotesk', sans-serif;
 }
 
@@ -34,18 +34,6 @@
     font-size: larger;
     width: 50vw;
     text-align: center;
-}
-
-.flashcard-added-popup,
-.flashcard-removed-popup {
-    gap: 2em;
-    font-family: 'IBM Plex Mono', monospace;
-}
-
-.flashcard-added-popup .btn,
-.flashcard-removed-popup .btn {
-  width: fit-content!important;
-  padding: 10px!important;
 }
 
 @media (max-width: 767px) {

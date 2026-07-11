@@ -53,7 +53,7 @@ const FlashcardPage = () => {
 
     return (
         <div className="flashcard-page">
-            <h2>Flashcards</h2>
+            <h2>Your Flashcards</h2>
             {isLoading ? (
                 <p>Loading...</p>
             ) : (

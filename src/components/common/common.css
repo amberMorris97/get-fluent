@@ -87,6 +87,7 @@
     border: 3px solid #995FA3;
     border-radius: 12px;
     padding: 15px;
+    box-shadow: 10px 20px 1px;
 }
 
 .flashcard-back {
@@ -107,6 +108,7 @@
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
 }
+
 .modal-content {
     position: fixed;
     top: 50%;
@@ -121,6 +123,18 @@
     background-color: #F5EFDD;
     border: 1px solid black;
     border-radius: 12px;
+}
+
+.flashcard-added-popup,
+.flashcard-removed-popup {
+    gap: 2em;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.flashcard-added-popup .btn,
+.flashcard-removed-popup .btn {
+  width: fit-content!important;
+  padding: 10px!important;
 }
 
 .before-you-start {
