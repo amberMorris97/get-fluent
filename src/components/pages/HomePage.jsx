@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import generatePhrase from '../../utils/generatePhrase';
 import Card from '../common/Card';
 import Button from '../common/Button';
+import Modal from '../common/Modal';
 
 const HomePage = () => {
     const [allPhrases, setAllPhrases] = useState(null);
     const [currentPhrase, setCurrentPhrase] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const fetchPhrases = async () => {
         let phrases = [];
@@ -55,7 +57,7 @@ const HomePage = () => {
         }
         
         localStorage.setItem(currentPhrase.id, JSON.stringify(currentPhrase));
-        alert('Flashcard added!');                      
+        setIsOpen(true);                    
     }  
 
     /* TODO: Style loading element */
@@ -65,14 +67,18 @@ const HomePage = () => {
                 <p>Loading...</p>
              ) : (
                 <>
-                    <h2>Learn phrases in Haitian Creole</h2>
+                    <h1 className='title'>Pick up a new phrase everyday</h1>
+                    <span className='sub-title'>Learn phrases in Haitian Creole</span>
                     <Card
                         type={'phrases'}
                         phrase={currentPhrase}
                         handleAddFlashcard={addToFlashCards}
                     />
+                    <Modal className="flashcard-added-popup" open={isOpen} onClose={() => setIsOpen(false)}>
+                        <span>Flashcard has been added!</span>
+                    </Modal>
                     <div className='home-page-btns'>
-                        <Button label="Next" className="next-phrase-btn btn" onClick={handleGetNewPhrase} />
+                        <Button label="Next phrase" className="next-phrase-btn btn" onClick={handleGetNewPhrase} />
                         <Button label="Add to flashcards" className="add-flashcard-btn btn" onClick={addToFlashCards} />
                     </div>
               </>

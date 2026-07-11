@@ -14,8 +14,13 @@
     padding: 20px;
 }
 
-.home-page h2 {
-    text-align: center;
+.home-page h1 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.sub-title {
+    font-family: 'IBM Plex Mono', monospace;
+    color: #16348C;
 }
 
 .home-page-btns,
@@ -31,6 +36,17 @@
     text-align: center;
 }
 
+.flashcard-added-popup,
+.flashcard-removed-popup {
+    gap: 2em;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.flashcard-added-popup .btn,
+.flashcard-removed-popup .btn {
+  width: fit-content!important;
+  padding: 10px!important;
+}
 
 @media (max-width: 767px) {
     .about-page p {

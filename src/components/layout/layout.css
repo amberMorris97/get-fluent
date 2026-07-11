@@ -46,11 +46,13 @@
 }
 
 .footer {
-  background-color: #87F5FB;
+  background-color: #1B1B2F;
+  color: #F5EFDD;
   height: 75px;
   margin-top: auto;
   bottom: 0;
   position: sticky;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .footer ul {
