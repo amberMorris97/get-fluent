@@ -33,7 +33,7 @@ import { Link } from 'react-router';
         <footer className="footer">
             <ul className='footer-list'>
                 <li onClick={() => setIsOpen(true)}>Resources</li>
-                <li>
+                <li className='all-phrases-link'>
                     <Link to="/all-phrases">
                       All Phrases
                     </Link>
