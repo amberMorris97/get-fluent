@@ -10,6 +10,7 @@
     margin-top: 15px;
     display: grid;
     grid-template-columns: 200px 200px;
+    gap: 3rem!important;
 }
 
 .contact-form button {
@@ -20,8 +21,7 @@
 .card,
 .card-inner,
 .flashcard-front,
-.flashcard-back,
-.no-flashcards {
+.flashcard-back {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,13 +35,8 @@
     align-items: center;
 }
 
-.phrase-card-inner,
-.flashcard-btns,
-.contact-form {
-    gap: 2rem;
-}
-
 .phrase-card-inner {
+    gap: 2rem;
     text-align: center;
 }
 
@@ -101,22 +96,6 @@
 .flashcard-back {
   background-color: #995FA3;
   font-size: x-large;
-}
-
-.flashcard-btns {
-    gap: 3rem;
-}
-
-.phrase-pronunciation {
-    background-color: #A2D729;
-    border: 1px solid black;
-    border-radius: 999px;
-    padding: 10px;
-}
-
-.flashcard .phrase-pronunciation {
-    font-size: medium;
-    margin-top: 15px;
 }
 
 .modal-overlay {
@@ -179,10 +158,6 @@
 .modal-border {
     height: 6px;
     background-color: rgb(200, 29, 37);
-}
-
-.next-flashcard-btn {
-    font-family: 'IBM Plex Mono', monospace;
 }
 
 
