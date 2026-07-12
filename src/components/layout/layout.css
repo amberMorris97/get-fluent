@@ -54,6 +54,11 @@
   padding: 20px;
 }
 
+.footer ul li a {
+    text-decoration: none;
+    color: #F5EFDD;
+}
+
 .footer-list li {
     cursor: pointer;
 }
@@ -64,10 +69,6 @@
     font-weight: 300;
 }
 
-.all-phrases-link a {
-    text-decoration: none;
-    color: #F5EFDD;
-}
 
 @media (max-width: 767px) {
     .nav-toggle {
