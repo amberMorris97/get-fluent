@@ -43,22 +43,20 @@
 .phrase-card-inner h3,
 .flashcard-front {
     font-size: xx-large;
-    font-family: 'Jacques Francois', serif;
 }
 
 .phrase-card-inner h4 {
     font-size: x-large;
-    font-weight: lighter;
     font-style: italic;
 }
 
-.flashcard {
+.flashcard, .phrase-card {
     perspective: 1000px;
     background: transparent;
     cursor: pointer;
 }
 
-.flashcard-inner {
+.flashcard-inner, .phrase-card-inner {
     position: relative;
     width: 100%;
     height: 80%;
@@ -82,20 +80,86 @@
 }
 
 .flashcard-front,
-.flashcard-back {
-    border: 1px solid #995FA3;
+.flashcard-back,
+.phrase-card-inner {
+    border: 3px solid #995FA3;
     border-radius: 12px;
     padding: 15px;
+    box-shadow: 10px 20px 1px;
+}
+
+.phrase-card h4,
+.flashcard-back {
+    font-weight: 300;
 }
 
 .flashcard-back {
   background-color: #995FA3;
+  font-size: x-large;
 }
 
-.flashcard-back h3 {
-    font-weight: lighter;
-    font-size: x-large;
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
 }
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 50px;
+    z-index: 1000;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5EFDD;
+    border: 1px solid black;
+    border-radius: 12px;
+    overflow: auto;
+}
+
+.modal-content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.close-modal-btn {
+    width: 25%!important;
+    align-self: flex-end;
+}
+
+.org-link {
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 15px;
+    width: 20vw;
+    margin-top: 10px;
+    transition: transform 0.2ease, box-shadow 0.2 ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.org-link a {
+    text-decoration: none;
+    color: black;
+}
+
+.org-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15)
+}
+
+.modal-border {
+    height: 6px;
+    background-color: rgb(200, 29, 37);
+}
+
 
 @media (max-width: 767px) {
   .phraseCard {
@@ -120,6 +184,23 @@
 
   .flashcard {
     text-align: center;
+  }
+
+  .before-you-start {
+    font-size: x-small;
+  }
+
+  .haiti-aid-title {
+    font-size: large;
+  }
+
+  .haiti-aid-paragraph {
+    font-size: medium;
+  }
+
+  .org-link {
+    width: 55vw;
+    font-size: small;
   }
 
   .form-container {

@@ -3,12 +3,14 @@ import generatePhrase from '../../utils/generatePhrase';
 import Button from '../common/Button';
 import Card from '../common/Card';
 import parseFlashcards from '../../utils/parseFlashcards';
+import Modal from '../common/Modal';
 
 const FlashcardPage = () => {
     const [allFlashcards, setAllFlashcards] = useState(null);
     const [flipped, setFlipped] = useState(false);
     const [currentFlashcardPhrase, setCurrentFlashcardPhrase] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         const flashcards = parseFlashcards({ ...localStorage });
@@ -22,7 +24,14 @@ const FlashcardPage = () => {
     };
 
     const handleNextFlashcard = () => {
-        setCurrentFlashcardPhrase(generatePhrase(allFlashcards));
+        if (flipped) {
+            setTimeout(() => {
+                setCurrentFlashcardPhrase(generatePhrase(allFlashcards));
+            }, 200);
+        } else {
+            setCurrentFlashcardPhrase(generatePhrase(allFlashcards));
+        }
+
         setFlipped(false);
     };
 
@@ -32,13 +41,11 @@ const FlashcardPage = () => {
         localStorage.removeItem(currentFlashcardPhrase.id);
 
         const updatedFlashcards = parseFlashcards({ ...localStorage });
-
-        /** TODO: popup to alert user */
-        alert('Flashcard removed!');
         
         setAllFlashcards(updatedFlashcards);
         setCurrentFlashcardPhrase(generatePhrase(updatedFlashcards));
         setFlipped(false);
+        setIsOpen(true);
     }
 
     if (!isLoading && allFlashcards.length <= 0) {
@@ -53,7 +60,7 @@ const FlashcardPage = () => {
 
     return (
         <div className="flashcard-page">
-            <h2>Flashcards</h2>
+            <h2>Your Flashcards</h2>
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
@@ -65,6 +72,9 @@ const FlashcardPage = () => {
                     handleRemoveFlashcard={removeFlashcard}
                     type={'flashcards'}
                 />
+                <Modal className="flashcard-removed-popup" open={isOpen} onClose={() => setIsOpen(false)}>
+                    <span>Flashcard has been removed!</span>
+                </Modal>
             </div>
           )}
 

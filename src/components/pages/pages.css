@@ -14,8 +14,13 @@
     padding: 20px;
 }
 
-.home-page h2 {
-    text-align: center;
+.home-page h1, .flashcard-page h2 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.sub-title {
+    font-family: 'IBM Plex Mono', monospace;
+    color: #16348C;
 }
 
 .home-page-btns,
@@ -31,6 +36,26 @@
     text-align: center;
 }
 
+
+.flashcard-added-popup,
+.flashcard-removed-popup {
+    gap: 2em;
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: #F5EFDD;
+    color: #1C2541;                                      
+    font-weight: bolder;
+}
+
+.flashcard-added-popup .btn,
+.flashcard-removed-popup .btn {
+  width: fit-content!important;
+  padding: 10px!important;
+}
+
+.before-you-start {
+    font-family: 'IBM Plex Mono', monospace;
+    color: rgb(200, 29, 37);
+}
 
 @media (max-width: 767px) {
     .about-page p {

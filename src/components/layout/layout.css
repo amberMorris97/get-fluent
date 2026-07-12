@@ -1,22 +1,15 @@
 .header {
-  display: grid;
-  grid-template-columns: repeat(3, 2fr);
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
   padding: 20px;
-  border-bottom: 2px solid black;
-  box-shadow: 0 4px 2px -2px black;
-  border-radius: 12px;
+  border-bottom: 6px solid #A2D729;
   background-color: #1C2541;
   height: 75px;
-}
-
-.header,
-.nav-menu a {
-  color: #A2D729;
+  color: #F5EFDD;
 }
 
 .header h1 {
-  grid-column: 2 / 3;
+  align-self: end;
 }
 
 .nav-menu {
@@ -25,12 +18,12 @@
 
 .nav-menu a {
   text-decoration: none;
+  color: #F5EFDD;
 }
 
 .nav-links {
-  text-decoration: none;
   display: flex;
-  justify-content: space-evenly;
+  gap: 2em;
 }
 
 .nav-toggle {
@@ -46,7 +39,8 @@
 }
 
 .footer {
-  background-color: #87F5FB;
+  background-color: #1B1B2F;
+  color: #F5EFDD;
   height: 75px;
   margin-top: auto;
   bottom: 0;
@@ -60,6 +54,15 @@
   padding: 20px;
 }
 
+.footer-list li {
+    cursor: pointer;
+}
+
+.learning-resources-modal h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    color: #16348C;
+    font-weight: 300;
+}
 @media (max-width: 767px) {
     .nav-toggle {
         display: flex;
