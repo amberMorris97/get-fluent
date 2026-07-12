@@ -63,6 +63,12 @@
     color: #16348C;
     font-weight: 300;
 }
+
+.all-phrases-link a {
+    text-decoration: none;
+    color: #F5EFDD;
+}
+
 @media (max-width: 767px) {
     .nav-toggle {
         display: flex;

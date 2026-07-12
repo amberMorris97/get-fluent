@@ -3,6 +3,7 @@ import Modal from '../common/Modal';
 import learningResourceData from '../mock-data/learningResourceData';
 import resourceData from '../mock-data/resourceData';
 import ResourceLink from '../common/ResourceLink';
+import { Link } from 'react-router';
 
  const Footer = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,11 @@ import ResourceLink from '../common/ResourceLink';
         <footer className="footer">
             <ul className='footer-list'>
                 <li onClick={() => setIsOpen(true)}>Resources</li>
-                <li>All Phrases</li>
+                <li className='all-phrases-link'>
+                    <Link to="/all-phrases">
+                      All Phrases
+                    </Link>
+                </li>
                 <li>Project Source</li>
             </ul>
             <Modal className="learning-resources-modal" open={isOpen} onClose={() => setIsOpen(false)}>

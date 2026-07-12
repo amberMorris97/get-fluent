@@ -7,6 +7,7 @@ const Card = ({ type, phrase, flipped, onClick }) => {
                 <div className="card-inner flashcard-inner">
                     <div className="flashcard-front">
                         <h3>{phrase.phrase}</h3>
+                        <span className="phrase-pronunciation">{phrase.pronunciation}</span>
                     </div>
                     <div className="flashcard-back">
                         <h3>{phrase.translation}</h3>
@@ -20,6 +21,7 @@ const Card = ({ type, phrase, flipped, onClick }) => {
                 <div className="card-inner phrase-card-inner">
                     <h3>{phrase.phrase}</h3>
                     <h4>{phrase.translation}</h4>
+                    <span className="phrase-pronunciation">{phrase.pronunciation}</span>
               </div>
             </div>
         );

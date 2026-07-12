@@ -1,9 +1,10 @@
 const AllPhrasesPage = ({ allPhrases}) => {
-    const renderAllPhrases = allPhrases.map((phrase) => {
+    const renderAllPhrases = allPhrases.map((phrase, idx) => {
         return (
-            <div className="phrase">
+            <div key={phrase.idx} className="phrase">
                 <h3>{phrase.phrase}</h3>
                 <h4>{phrase.translation}</h4>
+                <h4>{phrase.pronunciation}</h4>
             </div>
         );
     });
@@ -11,7 +12,24 @@ const AllPhrasesPage = ({ allPhrases}) => {
     return (
         <div className="all-phrases-page">
             <h2>All Phrases</h2>
-          {renderAllPhrases}        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phrase</th>
+                        <th>Translation</th>
+                        <th>Pronunciation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {allPhrases.map((phrase) => (
+                        <tr>
+                            <td className="phrase-cell">{phrase.phrase}</td>
+                            <td className="translation-cell">{phrase.translation}</td>
+                            <td className="pronunciation-cell">{phrase.pronunciation}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>       
         </div>
     );
 };
