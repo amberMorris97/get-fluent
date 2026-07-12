@@ -125,26 +125,6 @@
     overflow: auto;
 }
 
-.flashcard-added-popup,
-.flashcard-removed-popup {
-    gap: 2em;
-    font-family: 'IBM Plex Mono', monospace;
-    background-color: #F5EFDD;
-    color: #1C2541;                                      
-    font-weight: bolder;
-}
-
-.flashcard-added-popup .btn,
-.flashcard-removed-popup .btn {
-  width: fit-content!important;
-  padding: 10px!important;
-}
-
-.before-you-start {
-    font-family: 'IBM Plex Mono', monospace;
-    color: rgb(200, 29, 37);
-}
-
 .modal-content h2 {
     font-family: 'Space Grotesk', sans-serif;
 }

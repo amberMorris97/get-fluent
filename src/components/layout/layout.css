@@ -54,6 +54,15 @@
   padding: 20px;
 }
 
+.footer-list li {
+    cursor: pointer;
+}
+
+.learning-resources-modal h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    color: #16348C;
+    font-weight: 300;
+}
 @media (max-width: 767px) {
     .nav-toggle {
         display: flex;

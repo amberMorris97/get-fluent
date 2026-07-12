@@ -10,7 +10,8 @@ import Footer from './components/layout/Footer';
 import Modal from './components/common/Modal';
 import ResourceLink from './components/common/ResourceLink';
 
-import resourceData from './utils/resourceData';
+import resourceData from './components/mock-data/resourceData';
+import AllPhrasesPage from './components/pages/AllPhrasesPage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -47,6 +48,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/flashcards" element={<FlashcardPage />} />
+        <Route path="/all-phrases" element={<AllPhrasesPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />
