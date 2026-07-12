@@ -4,45 +4,10 @@ import Card from '../common/Card';
 import Button from '../common/Button';
 import Modal from '../common/Modal';
 
-const HomePage = () => {
-    const [allPhrases, setAllPhrases] = useState(null);
-    const [currentPhrase, setCurrentPhrase] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+const HomePage = ({ allPhrases, setCurrentPhrase, currentPhrase }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [alreadyExistsModalOpen, setAlreadyExistsModalOpen] = useState(false);
 
-    const fetchPhrases = async () => {
-        let phrases = [];
-
-        try {
-            const response = await fetch('https://docs.google.com/document/d/1vvDmQqC9iugRJSFhHig45uVciUp4z_UVZ0dUC7NyR18/export?format=txt');
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || `ERROR - Status ${response.status}`);
-            } else {
-                const data = await response.json(); 
-                phrases = data.map((phrase) => {
-                    let newPhrase = {
-                        id: phrase.id,
-                        phrase: phrase.phrase,
-                        translation: phrase.translation,
-                    }
-
-                    return newPhrase;
-                });
-            }
-        } catch (error) {
-            console.error(error.message);
-        } finally {
-            setIsLoading(false);
-            setAllPhrases(phrases);
-            setCurrentPhrase(generatePhrase(phrases));
-        }
-    };
-
-    useEffect(() => {
-        fetchPhrases();
-    }, []);
 
     const handleGetNewPhrase = () => {
         setCurrentPhrase(generatePhrase(allPhrases));
@@ -51,7 +16,7 @@ const HomePage = () => {
     const addToFlashCards = () => {
         if (localStorage.getItem(currentPhrase.id)) {
             /** TODO, Find better way to let user know flashcard exists/disable add button if flashcard already exists */
-            alert('Flashcard already exists!');
+            setAlreadyExistsModalOpen(true);
 
             return;
         }
@@ -63,8 +28,8 @@ const HomePage = () => {
     /* TODO: Style loading element */
     return (
         <section className='home-page'>
-            {isLoading ? (
-                <p>Loading...</p>
+            {!currentPhrase ? (
+                <div>Loading...</div>
              ) : (
                 <>
                     <h1 className='title'>Pick up a new phrase everyday</h1>
@@ -74,8 +39,11 @@ const HomePage = () => {
                         phrase={currentPhrase}
                         handleAddFlashcard={addToFlashCards}
                     />
-                    <Modal className="flashcard-added-popup" open={isOpen} onClose={() => setIsOpen(false)}>
+                    <Modal className="flashcard-popup" open={isOpen} onClose={() => setIsOpen(false)}>
                         <span>Flashcard has been added!</span>
+                    </Modal>
+                    <Modal className="flashcard-popup" open={alreadyExistsModalOpen} onClose={() => setAlreadyExistsModalOpen(false)}>
+                        <span>Flashcard already exists!</span>
                     </Modal>
                     <div className='home-page-btns'>
                         <Button label="Next phrase" className="next-phrase-btn btn" onClick={handleGetNewPhrase} />

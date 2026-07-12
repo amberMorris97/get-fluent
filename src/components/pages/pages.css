@@ -37,8 +37,7 @@
 }
 
 
-.flashcard-added-popup,
-.flashcard-removed-popup {
+.flashcard-popup {
     gap: 2em;
     font-family: 'IBM Plex Mono', monospace;
     background-color: #F5EFDD;
@@ -46,8 +45,7 @@
     font-weight: bolder;
 }
 
-.flashcard-added-popup .btn,
-.flashcard-removed-popup .btn {
+.flashcard-popup .btn {
   width: fit-content!important;
   padding: 10px!important;
 }

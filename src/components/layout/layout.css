@@ -63,6 +63,7 @@
     color: #16348C;
     font-weight: 300;
 }
+
 @media (max-width: 767px) {
     .nav-toggle {
         display: flex;
