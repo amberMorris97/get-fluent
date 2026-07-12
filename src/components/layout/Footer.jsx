@@ -38,7 +38,11 @@ import { Link } from 'react-router';
                       All Phrases
                     </Link>
                 </li>
-                <li>Project Source</li>
+                <li classNam>
+                    <Link to="https://github.com/amberMorris97/get-fluent" target="_blank">
+                      Project Source
+                    </Link>
+                </li>
             </ul>
             <Modal className="learning-resources-modal" open={isOpen} onClose={() => setIsOpen(false)}>
                 <h2 className="learning-resources-modal-title">Learning Resources</h2>

@@ -61,6 +61,7 @@ const FlashcardPage = () => {
     return (
         <div className="flashcard-page">
             <h2>Your Flashcards</h2>
+            <span className="tap-to-flip">{"(TAP TO FLIP)"}</span>
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
@@ -72,7 +73,7 @@ const FlashcardPage = () => {
                     handleRemoveFlashcard={removeFlashcard}
                     type={'flashcards'}
                 />
-                <Modal className="flashcard-removed-popup" open={isOpen} onClose={() => setIsOpen(false)}>
+                <Modal className="flashcard-popup" open={isOpen} onClose={() => setIsOpen(false)}>
                     <span>Flashcard has been removed!</span>
                 </Modal>
             </div>

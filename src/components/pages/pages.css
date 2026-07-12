@@ -19,7 +19,7 @@
     font-family: 'Space Grotesk', sans-serif;
 }
 
-.sub-title {
+.sub-title, .tap-to-flip {
     font-family: 'IBM Plex Mono', monospace;
     color: #16348C;
 }
@@ -74,7 +74,6 @@
 .all-phrases-page h2 {
     font-family: 'Space Grotesk', sans-serif;
 }
-
 
 @media (max-width: 767px) {
     .about-page p {
