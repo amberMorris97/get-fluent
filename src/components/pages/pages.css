@@ -1,6 +1,7 @@
 .home-page,
 .about-page,
-.flashcard-page {
+.flashcard-page,
+.all-phrases-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,9 +27,13 @@
 .home-page-btns,
 .flashcard-btns {
   display: flex;
-  gap: 2rem;
 }
 
+.home-page-btns,
+.flashcard-buttons,
+.all-phrases-page {
+    gap: 2rem;
+}
 
 .about-page p {
     font-size: larger;
@@ -50,10 +55,26 @@
   padding: 10px!important;
 }
 
-.before-you-start {
+.before-you-start, .pronunciation-cell {
     font-family: 'IBM Plex Mono', monospace;
-    color: rgb(200, 29, 37);
 }
+
+.before-you-start {
+  color: rgb(200, 29, 37);
+}
+
+.phrase-cell, .translation-cell, .pronunciation-cell {
+  border: 1px solid black;
+  border-radius: 12px;
+  height: 5vh;
+  text-align: center;
+  padding: 5px;
+}
+
+.all-phrases-page h2 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
 
 @media (max-width: 767px) {
     .about-page p {

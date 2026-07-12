@@ -12,7 +12,24 @@ const AllPhrasesPage = ({ allPhrases}) => {
     return (
         <div className="all-phrases-page">
             <h2>All Phrases</h2>
-          {renderAllPhrases}        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phrase</th>
+                        <th>Translation</th>
+                        <th>Pronunciation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {allPhrases.map((phrase) => (
+                        <tr>
+                            <td className="phrase-cell">{phrase.phrase}</td>
+                            <td className="translation-cell">{phrase.translation}</td>
+                            <td className="pronunciation-cell">{phrase.pronunciation}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>       
         </div>
     );
 };
