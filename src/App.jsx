@@ -24,7 +24,7 @@ function App() {
       let phrases = [];
 
       try {
-          const response = await fetch('https://docs.google.com/document/d/1vvDmQqC9iugRJSFhHig45uVciUp4z_UVZ0dUC7NyR18/export?format=txt');
+          const response = await fetch(`https://docs.google.com/document/d/1_o_TSi7t8-s5K8uS3xBMxIzv8UCkRyjt2wOZddbw9JI/export?format=txt&cb=${Date.now()}`);
 
           if (!response.ok) {
               const errorData = await response.json();
@@ -36,6 +36,7 @@ function App() {
                       id: phrase.id,
                       phrase: phrase.phrase,
                       translation: phrase.translation,
+                      pronunciation: phrase.pronunciation,
                   }
 
                   return newPhrase;
@@ -54,9 +55,10 @@ function App() {
         fetchPhrases();
     }, []);
 
-  const renderResourceData = resourceData.map((resource) => {
+  const renderResourceData = resourceData.map((resource, idx) => {
     return (
       <ResourceLink
+        key={idx}
         title={resource.title}
         description={resource.description}
         url={resource.url}
@@ -96,7 +98,7 @@ function App() {
               } />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/flashcards" element={<FlashcardPage />} />
-          <Route path="/all-phrases" element={<AllPhrasesPage />} />
+          <Route path="/all-phrases" element={<AllPhrasesPage allPhrases={allPhrases} />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </>
