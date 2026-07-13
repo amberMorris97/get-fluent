@@ -12,35 +12,3 @@
   gap: 2em;
   background-color: #F5EFDD;
 }
-
-
-.btn {
-  background: transparent;
-  box-shadow: 0 5px 0 #1B1B2F;
-  color: white;
-  border-radius: 999px;
-  border: 1px solid #182038;
-  width: 12vw;
-  height: 5vh;
-  cursor: pointer;
-  color: black;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: bold;
-} 
-
-.add-flashcard-btn, .remove-flashcard-btn {
-  background-color: #A2D729;
-}
-
-.btn:active {
-  box-shadow: none;
-  transform: translateY(5px);
-}
-
-@media (max-width: 767px) {
-
-  .btn {
-    width: 50vw;
-  }
-}
-

@@ -10,7 +10,7 @@ import Footer from './components/layout/Footer';
 import Modal from './components/common/Modal';
 import ResourceLink from './components/common/ResourceLink';
 
-import resourceData from './components/mock-data/resourceData';
+import resourceData from './utils/resourceData';
 import AllPhrasesPage from './components/pages/AllPhrasesPage';
 import generatePhrase from './utils/generatePhrase';
 

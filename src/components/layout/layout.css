@@ -69,6 +69,10 @@
     font-weight: 300;
 }
 
+.ui-divider {
+    padding: 10px;
+}
+
 
 @media (max-width: 767px) {
     .nav-toggle {

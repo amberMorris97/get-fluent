@@ -98,6 +98,22 @@
   font-size: x-large;
 }
 
+.flashcard-btns {
+    gap: 3rem;
+}
+
+.phrase-pronunciation {
+    background-color: #A2D729;
+    border: 1px solid black;
+    border-radius: 999px;
+    padding: 10px;
+}
+
+.flashcard .phrase-pronunciation {
+    font-size: medium;
+    margin-top: 15px;
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -160,6 +176,42 @@
     background-color: rgb(200, 29, 37);
 }
 
+.btn {
+  background: transparent;
+  box-shadow: 0 5px 0 #1B1B2F;
+  color: white;
+  border-radius: 999px;
+  border: 1px solid #182038;
+  width: 12vw;
+  height: 5vh;
+  cursor: pointer;
+  color: black;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: bold;
+} 
+
+.add-flashcard-btn, .remove-flashcard-btn {
+  background-color: #A2D729;
+}
+
+.btn:active {
+  box-shadow: none;
+  transform: translateY(5px);
+}
+
+.form-container label {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-container label span {
+    grid-column: 2;
+    text-align: center;
+    color: rgb(200, 29, 37);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: x-small;
+}
+
 
 @media (max-width: 767px) {
   .phraseCard {
@@ -217,5 +269,9 @@
 
   .contact-form input, textarea {
     width: 40vw;
+  }
+
+  .btn {
+    width: 50vw;
   }
 }
