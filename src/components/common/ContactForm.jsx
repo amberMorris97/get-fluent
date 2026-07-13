@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import validateForm from '../../utils/validateForm';
+import Modal from './Modal';
 
 const ContactForm = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -9,12 +12,7 @@ const ContactForm = () => {
         translation: '',
     });
 
-    const [formErrors, setFormErrors] = useState({
-        name: '',
-        email: '',
-        phrase: '',
-        translation: '',
-    });
+    const [formErrors, setFormErrors] = useState({});
 
     const handleInputChange = (e) => {
         setFormData({
@@ -31,12 +29,32 @@ const ContactForm = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validateForm(formData));
+
+        const errArr = Object.keys(formErrors);
+
+        /** resets the field(s) with the error */
+        if (errArr.length > 0) {
+            errArr.forEach((errName) => {
+                if (formErrors[errName].length > 0) {
+                    setFormData({
+                        ...formData,
+                        [errName]: '',
+                    });
+                }
+            });
+
+            return;
+        }
+
         setFormData({
             name: '',
             email: '',
             phrase: '',
             translation: '',
         });
+            
+        /** Notify the user form was submitted */
+        setIsOpen(true);
     };
 
   return (
@@ -71,6 +89,9 @@ const ContactForm = () => {
                     <span>{formErrors.translation}</span>
                 </label>
             </>
+            <Modal className="flashcard-popup" open={isOpen} onClose={() => setIsOpen(false)}>
+                <span>Thank you for submitting!</span>
+            </Modal>
             <button className="btn" type="submit">Submit Phrase</button>
         </form>
     </div>
