@@ -1,7 +1,7 @@
  import { useState } from 'react';
 import Modal from '../common/Modal';
 import learningResourceData from '../mock-data/learningResourceData';
-import resourceData from '../mock-data/resourceData';
+import resourceData from '../../utils/resourceData';
 import ResourceLink from '../common/ResourceLink';
 import { Link } from 'react-router';
 
@@ -46,7 +46,8 @@ import { Link } from 'react-router';
             </ul>
             <Modal className="learning-resources-modal" open={isOpen} onClose={() => setIsOpen(false)}>
                 <h2 className="learning-resources-modal-title">Learning Resources</h2>
-                {renderLearningResources} 
+                {renderLearningResources}
+                <div className="ui-divider"></div>
                 <h2>How To Help</h2>
                 {renderResourceData}
             </Modal>
