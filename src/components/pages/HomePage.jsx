@@ -24,7 +24,6 @@ const HomePage = ({ allPhrases, setCurrentPhrase, currentPhrase }) => {
         setIsOpen(true);                    
     }  
 
-    /* TODO: Style loading element */
     return (
         <section className='home-page'>
             {!currentPhrase ? (

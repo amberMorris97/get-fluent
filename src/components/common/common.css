@@ -212,17 +212,27 @@
     font-size: x-small;
 }
 
+@media (max-width: 300px) {
+    .phrase-card h3, .flashcard h3 {
+        font-size: large;
+    }
+
+    .phraseCard h4 {
+        font-size: medium;
+    }
+
+    .phrase-pronunciation {
+        font-size: small;
+    }
+}
+
 
 @media (max-width: 767px) {
-  .phraseCard {
-    width: 75vw;
-  }
-
-  .phraseCard h3, .flashcard h3 {
+  .phrase-card h3, .flashcard h3 {
     font-size: x-large;
   }
 
-  .phraseCard h4 {
+  .phrase-card h4 {
     font-size: large;
   }
 
@@ -236,6 +246,12 @@
 
   .flashcard {
     text-align: center;
+  }
+
+  .flashcard-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .before-you-start {
