@@ -1,6 +1,6 @@
 const validateForm = ({ name, email, phrase, translation }) => {
     const errors = {};
-    let emailRegex = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
+    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!name) errors.name = "Name is required.";
 
