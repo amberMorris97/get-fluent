@@ -31,7 +31,13 @@ const ContactForm = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validateForm(formData));
-    }
+        setFormData({
+            name: '',
+            email: '',
+            phrase: '',
+            translation: '',
+        });
+    };
 
   return (
     <div className="form-container">
@@ -66,7 +72,6 @@ const ContactForm = () => {
                 </label>
             </>
             <button className="btn" type="submit">Submit Phrase</button>
-            
         </form>
     </div>
   );
