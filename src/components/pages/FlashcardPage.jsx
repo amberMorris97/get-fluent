@@ -49,7 +49,6 @@ const FlashcardPage = () => {
     }
 
     if (!isLoading && allFlashcards.length <= 0) {
-        /** TODO: Style "No flashcards" display, link back to home page */
         return (
             <div className="no-flashcards">
                 <Card flipped={flipped} onClick={handleFlipState} />
