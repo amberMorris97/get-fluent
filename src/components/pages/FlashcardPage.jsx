@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import generatePhrase from '../../utils/generatePhrase';
 import Button from '../common/Button';
 import Card from '../common/Card';
@@ -11,6 +12,8 @@ const FlashcardPage = () => {
     const [currentFlashcardPhrase, setCurrentFlashcardPhrase] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
+    
+    const navigate = useNavigate();
 
     useEffect(() => {
         const flashcards = parseFlashcards({ ...localStorage });
@@ -52,7 +55,7 @@ const FlashcardPage = () => {
         return (
             <div className="no-flashcards">
                 <Card flipped={flipped} onClick={handleFlipState} />
-                <Button label="Get Fluent" onClick={() => window.location = '/'} />
+                <Button label="Get Fluent" onClick={() => navigate('/')} />
             </div>
         );
     }
