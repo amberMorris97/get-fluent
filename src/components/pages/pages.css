@@ -1,7 +1,8 @@
 .home-page,
 .about-page,
 .flashcard-page,
-.all-phrases-page {
+.all-phrases-page,
+.no-flashcards {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +74,7 @@
 
 .all-phrases-page h2 {
     font-family: 'Space Grotesk', sans-serif;
-}
+}            
 
 @media (max-width: 767px) {
     .about-page p {

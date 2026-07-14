@@ -3,7 +3,7 @@ import NavMenu from './NavMenu';
 const Header = () => {
     return (
         <header className="header">
-            <h1>Get Fluent</h1>
+            <img src="./images/get_fluent_logo.svg" alt="logo" height="125" width="125" />
             <NavMenu />
         </header>
     );

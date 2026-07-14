@@ -188,6 +188,7 @@
   color: black;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: bold;
+  font-size: medium;
 } 
 
 .add-flashcard-btn, .remove-flashcard-btn {
