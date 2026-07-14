@@ -44,6 +44,7 @@ import { Link } from 'react-router';
                     </Link>
                 </li>
             </ul>
+            <p>&copy; 2026 Get Fluent. All rights reserved.</p>
             <Modal className="learning-resources-modal" open={isOpen} onClose={() => setIsOpen(false)}>
                 <h2 className="learning-resources-modal-title">Learning Resources</h2>
                 {renderLearningResources}
