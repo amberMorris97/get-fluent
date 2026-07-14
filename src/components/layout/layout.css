@@ -59,7 +59,7 @@
     color: #F5EFDD;
 }
 
-.footer-list li {
+.footer-list li, img {
     cursor: pointer;
 }
 
