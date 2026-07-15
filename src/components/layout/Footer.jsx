@@ -1,7 +1,7 @@
  import { useState } from 'react';
 import Modal from '../common/Modal';
 import learningResourceData from '../mock-data/learningResourceData';
-import resourceData from '../../utils/resourceData';
+import resourceData from '../mock-data/resourceData';
 import ResourceLink from '../common/ResourceLink';
 import { Link } from 'react-router';
 
