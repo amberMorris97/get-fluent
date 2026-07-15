@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import HomePage from './HomePage';
 import { MemoryRouter } from 'react-router';
 import generatePhrase from '../../utils/generatePhrase';

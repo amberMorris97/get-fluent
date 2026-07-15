@@ -38,7 +38,7 @@ import { Link } from 'react-router';
                       All Phrases
                     </Link>
                 </li>
-                <li classNam>
+                <li>
                     <Link to="https://github.com/amberMorris97/get-fluent" target="_blank">
                       Project Source
                     </Link>
