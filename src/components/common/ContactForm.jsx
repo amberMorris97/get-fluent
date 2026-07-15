@@ -28,21 +28,12 @@ const ContactForm = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        setFormErrors(validateForm(formData));
+        const errors = validateForm(formData);
 
-        const errArr = Object.keys(formErrors);
-
-        /** resets the field(s) with the error */
+        const errArr = Object.keys(errors);
+        
         if (errArr.length > 0) {
-            errArr.forEach((errName) => {
-                if (formErrors[errName].length > 0) {
-                    setFormData({
-                        ...formData,
-                        [errName]: '',
-                    });
-                }
-            });
-
+            setFormErrors(errors);
             return;
         }
 
