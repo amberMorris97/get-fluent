@@ -68,7 +68,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <Header />
+      <Header setIsOpen={setIsOpen} />
       {isLoading ? (
         <div>Loading...</div>
       ) : (

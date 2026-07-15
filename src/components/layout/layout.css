@@ -1,5 +1,10 @@
+.header,
+.nav-links,
+.footer {
+    display: flex;
+}
+
 .header {
-  display: flex;
   justify-content: space-between;
   padding: 20px;
   border-bottom: 6px solid #A2D729;
@@ -8,8 +13,8 @@
   color: #F5EFDD;
 }
 
-.header h1 {
-  align-self: end;
+.header img {
+  align-self: center;
 }
 
 .nav-menu {
@@ -22,7 +27,6 @@
 }
 
 .nav-links {
-  display: flex;
   gap: 2em;
 }
 
@@ -41,10 +45,14 @@
 .footer {
   background-color: #1B1B2F;
   color: #F5EFDD;
-  height: 75px;
+  height: 80px;
   margin-top: auto;
   bottom: 0;
   position: sticky;
+  font-family: 'Space Grotesk', sans-serif;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer ul {
@@ -52,6 +60,7 @@
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
+  gap: 10em;
 }
 
 .footer ul li a {
@@ -59,8 +68,13 @@
     color: #F5EFDD;
 }
 
-.footer-list li {
+.footer-list li, img {
     cursor: pointer;
+}
+
+.footer p {
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .learning-resources-modal h2 {
@@ -72,7 +86,6 @@
 .ui-divider {
     padding: 10px;
 }
-
 
 @media (max-width: 767px) {
     .nav-toggle {
@@ -103,9 +116,9 @@
     }
 
     .footer ul {
-        /* flex-direction: column; */
         align-items: center;
         padding: 20px;
+        gap: 0;
     }
 }     
 
@@ -121,12 +134,18 @@
     }
 
     .footer {
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
+        flex-direction: row;
+        height: 100px;
+        text-align: center;
     }
 
     .footer ul {
         flex-direction: column;
+    }
+
+    .footer ul {
         padding: 20px;
     }
 }

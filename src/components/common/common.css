@@ -138,7 +138,7 @@
     background-color: #F5EFDD;
     border: 1px solid black;
     border-radius: 12px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .modal-content h2 {
@@ -171,11 +171,6 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15)
 }
 
-.modal-border {
-    height: 6px;
-    background-color: rgb(200, 29, 37);
-}
-
 .btn {
   background: transparent;
   box-shadow: 0 5px 0 #1B1B2F;
@@ -188,6 +183,7 @@
   color: black;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: bold;
+  font-size: medium;
 } 
 
 .add-flashcard-btn, .remove-flashcard-btn {

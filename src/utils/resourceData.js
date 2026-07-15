@@ -14,6 +14,11 @@ const resourceData = [
         description: 'Haitian-led microfinance & emergency support',
         url: 'https://fonkoze.org/'
     },
+    {
+        title: 'Haiti ERF',
+        description: 'Haiti Emergency Relief Fund',
+        url: 'https://haitiemergencyrelief.org/',
+    }
 ];
 
 export default resourceData;
