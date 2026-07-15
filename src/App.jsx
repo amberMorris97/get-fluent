@@ -83,8 +83,6 @@ function App() {
               in many areas. If you'd like to help, here are a few vetted organiztions working
               on the ground:
             </p>
-            <div className='player-wrapper'>
-            </div>
             <div className="haiti-aid-links">
               {renderResourceData}
             </div>
