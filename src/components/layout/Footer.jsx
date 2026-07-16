@@ -24,6 +24,7 @@ import { Link } from 'react-router';
                 title={resource.title}
                 description={resource.description}
                 url={resource.url}
+                key={resource.title}
             />
       );
   });
