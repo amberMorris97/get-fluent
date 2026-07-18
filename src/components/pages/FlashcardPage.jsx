@@ -28,6 +28,7 @@ const FlashcardPage = () => {
 
     const handleNextFlashcard = () => {
         if (flipped) {
+            /** make sure translation is not revealed before flip animation finishes */
             setTimeout(() => {
                 setCurrentFlashcardPhrase(generatePhrase(allFlashcards));
             }, 200);
@@ -41,6 +42,7 @@ const FlashcardPage = () => {
     const removeFlashcard = (e) => {
         localStorage.removeItem(currentFlashcardPhrase.id);
 
+        /** "fetch" flashcards from updated flashcard storage */
         const updatedFlashcards = parseFlashcards({ ...localStorage });
         
         setAllFlashcards(updatedFlashcards);

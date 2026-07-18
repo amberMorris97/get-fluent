@@ -14,6 +14,7 @@ const HomePage = ({ allPhrases, setCurrentPhrase, currentPhrase }) => {
     };
 
     const addToFlashCards = () => {
+        /** check if the current phrase is already a flashcard, if so notify the user and return */
         if (localStorage.getItem(currentPhrase.id)) {
             setAlreadyExistsModalOpen(true);
 

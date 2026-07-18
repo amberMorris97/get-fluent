@@ -20,6 +20,7 @@ const ContactForm = () => {
             [e.target.name]: e.target.value
         });
 
+        /** remove errors from fields being edited */
         setFormErrors({
             ...formErrors,
             [e.target.name]: ''
@@ -28,10 +29,12 @@ const ContactForm = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        
         const errors = validateForm(formData);
 
         const errArr = Object.keys(errors);
         
+        /** if errors exist in the form, cancel the submit action */
         if (errArr.length > 0) {
             setFormErrors(errors);
             return;
