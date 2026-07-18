@@ -39,8 +39,6 @@ const FlashcardPage = () => {
     };
 
     const removeFlashcard = (e) => {
-        e.stopPropagation();
-
         localStorage.removeItem(currentFlashcardPhrase.id);
 
         const updatedFlashcards = parseFlashcards({ ...localStorage });
