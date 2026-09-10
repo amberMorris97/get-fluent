@@ -1,11 +1,10 @@
-const Input = ({ id, label, type, value, required, handleChange }) => {
+const Input = ({ id, label, type, value, handleChange }) => {
     return (
         <>
-            <label htmlFor={id}>
+            <label htmlFor={id} hidden="hidden">
                 {label}
-                {required && '*'}
             </label>     
-            <input id={id} type={type || 'text'} value={value} onChange={handleChange} />   
+            <input id={id} type={type || 'text'} placeholder={label} value={value} onChange={handleChange} />   
         </>
     );
 };
