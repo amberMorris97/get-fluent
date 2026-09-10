@@ -12,6 +12,8 @@ import ResourceLink from './components/common/ResourceLink';
 
 import resourceData from './components/mock-data/resourceData';
 import AllPhrasesPage from './components/pages/AllPhrasesPage';
+import LoginPage from './components/pages/auth/LoginPage';
+import RegisterPage from './components/pages/auth/RegisterPage';
 import generatePhrase from './utils/generatePhrase';
 
 function App() {
@@ -99,6 +101,8 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/flashcards" element={<FlashcardPage />} />
           <Route path="/all-phrases" element={<AllPhrasesPage allPhrases={allPhrases} />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </>
