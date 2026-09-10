@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { getEmailFromStorage, getTokenFromStorage, removeTokenFromStorage } from "../services/storageService";
 import { validateToken } from "../services/authService";
 
