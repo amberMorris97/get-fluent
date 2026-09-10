@@ -9,3 +9,5 @@ const Input = ({ id, label, type, value, required, handleChange }) => {
         </>
     );
 };
+
+export default Input;

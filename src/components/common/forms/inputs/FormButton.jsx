@@ -6,4 +6,4 @@ const FormButton = ({ id, type, label, classes, handleClick }) => {
   );
 };
 
-export default FormButton
+export default FormButton;
