@@ -5,7 +5,7 @@ export const requestRegistration = userProfile => {
 };
 
 export const requestLogin = authRequest => {
-    return apiClient.post('/user/loegin', authRequest);
+    return apiClient.post('/user/login', authRequest);
 };
 
 export const requestLogout = () => {

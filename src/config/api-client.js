@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getTokenFromStorage } from '../services/storageService';
 
 const apiClient = axios.create({
-    baseUrl: 'http://localhost:8080/api',
+    baseURL: 'http://localhost:8080/api',
 });
 
 apiClient.interceptors.request.use(
