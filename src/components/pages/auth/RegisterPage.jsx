@@ -47,6 +47,8 @@ const RegisterPage = () => {
         } catch (error) {
             console.error(error.message);
             // TODO: Give user feedback
+        } finally {
+            setSubmitting(false);
         }
     };
 

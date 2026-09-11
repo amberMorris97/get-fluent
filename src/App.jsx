@@ -18,6 +18,7 @@ import generatePhrase from './utils/generatePhrase';
 import { AuthContext } from './context/AuthContext';
 import PublicHeader from './components/layout/PublicHeader';
 import UserHeader from './components/layout/UserHeader';
+import UserProfilePage from './components/pages/UserProfilePage';
 
 function App() {
   const [allPhrases, setAllPhrases] = useState(null);
@@ -115,6 +116,7 @@ function App() {
           <Route path="/all-phrases" element={<AllPhrasesPage allPhrases={allPhrases} />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/user/profile" element={<UserProfilePage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </>
