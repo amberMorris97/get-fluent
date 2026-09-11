@@ -74,7 +74,14 @@
 
 .all-phrases-page h2 {
     font-family: 'Space Grotesk', sans-serif;
-}            
+}
+
+.register-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
 
 @media (max-width: 767px) {
     .about-page p {

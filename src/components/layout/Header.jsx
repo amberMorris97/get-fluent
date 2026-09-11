@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router';
-import NavMenu from './NavMenu';
 
-const Header = ({ setIsOpen }) => {
+const Header = ({ setIsOpen, NavMenu }) => {
     const navigate = useNavigate();
 
     const onLogoClick = () => {
