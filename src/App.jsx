@@ -29,7 +29,6 @@ function App() {
   const { auth } = useContext(AuthContext);
 
   const fetchPhrases = async () => {
-    console.log(auth)
       let phrases = [];
 
       try {

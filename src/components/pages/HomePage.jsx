@@ -1,10 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import generatePhrase from '../../utils/generatePhrase';
 import Card from '../common/Card';
 import Button from '../common/Button';
 import Modal from '../common/Modal';
+import { DataContext } from '../../context/DataContext';
 
-const HomePage = ({ allPhrases, setCurrentPhrase, currentPhrase }) => {
+const HomePage = ({ setCurrentPhrase, currentPhrase }) => {
+    const { allPhrases, setAllPhrases } = useContext(DataContext);
+    
     const [isOpen, setIsOpen] = useState(false);
     const [alreadyExistsModalOpen, setAlreadyExistsModalOpen] = useState(false);
 
