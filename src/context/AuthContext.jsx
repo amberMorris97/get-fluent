@@ -11,12 +11,13 @@ const initialAuth = {
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-    const [ auth, setAuth ] = useState(initialAuth);
+    const [auth, setAuth] = useState(initialAuth);
+    const [loading, setLoading] = useState(true);
 
     const checkAuthStatus = async () => {
         if (auth.token && auth.email) {
             try {
-                await validateToken({ token: auth.token, email: auth.email });
+                await validateToken({ token: auth.token, emailAddress: auth.email });
                 setAuth({
                     token: auth.token,
                     email: auth.email,
@@ -24,9 +25,15 @@ export const AuthContextProvider = ({ children }) => {
                 });
             } catch (error) {
                 removeTokenFromStorage();
-                setAuth(initialAuth);
+                setAuth({
+                    token: null,
+                    email: null,
+                    isAuthenticated: false,
+                });
             }
         }
+
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -34,8 +41,8 @@ export const AuthContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{auth, setAuth}}>
-            {children}
+        <AuthContext.Provider value={{ auth, setAuth }}>
+            {!loading && children}
         </AuthContext.Provider>
     );
 };

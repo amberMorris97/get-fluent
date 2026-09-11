@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router';
 import Header from './components/layout/Header';
 import HomePage from './components/pages/HomePage';
@@ -15,6 +15,9 @@ import AllPhrasesPage from './components/pages/AllPhrasesPage';
 import LoginPage from './components/pages/auth/LoginPage';
 import RegisterPage from './components/pages/auth/RegisterPage';
 import generatePhrase from './utils/generatePhrase';
+import { AuthContext } from './context/AuthContext';
+import PublicHeader from './components/layout/PublicHeader';
+import UserHeader from './components/layout/UserHeader';
 
 function App() {
   const [allPhrases, setAllPhrases] = useState(null);
@@ -22,7 +25,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
 
+  const { auth } = useContext(AuthContext);
+
   const fetchPhrases = async () => {
+    console.log(auth)
       let phrases = [];
 
       try {
@@ -70,7 +76,13 @@ function App() {
 
   return (
     <div className="app-container">
-      <Header setIsOpen={setIsOpen} />
+      {!auth.isAuthenticated ? (
+        <>
+          <PublicHeader setIsOpen={isOpen} />
+        </>
+      ) : (
+        <UserHeader setIsOpen={isOpen} />
+      )}
       {isLoading ? (
         <div>Loading...</div>
       ) : (
