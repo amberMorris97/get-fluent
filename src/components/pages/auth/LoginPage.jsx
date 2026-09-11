@@ -16,6 +16,8 @@ const initialUser = {
 const errorMessages = {
     emailRequired: "Email is required.",
     passwordRequired: "Password is required.",
+    emailOrPasswordIncorrect: "Email or password was incorrect.",
+    genericError: 'There was an error logging you in.',
 };
 
 const LoginPage = () => {
@@ -23,6 +25,7 @@ const LoginPage = () => {
     const [user, setUser] = useState(initialUser);
     const [hasErrors, setHasErrors] = useState(false);
     const [submitting, setSubmitting] = useState(false);
+    const [apiError, setApiError] = useState('');
 
     const navigate = useNavigate();
 
@@ -38,8 +41,14 @@ const LoginPage = () => {
                 navigate('/');
             }
         } catch (error) {
-            console.error(error.message);
-            // TODO: Give user feedback
+            setHasErrors(true);
+            if (error.response && error.response.status === 401) {
+                setApiError(errorMessages['emailOrPasswordIncorrect']);
+            } else {
+                setApiError(errorMessages['genericError']);
+            } 
+        } finally {
+            setSubmitting(false);
         }
     }
 
@@ -95,6 +104,11 @@ const LoginPage = () => {
                       label="Log In"
                       classes="btn"
                       handleClick={handleSubmit}
+                      disabled={submitting}
+                    />
+                    <InputErrorMessage
+                      hasError={hasErrors && apiError.length > 0}
+                      msg={apiError}
                     />
                 </form>
             </FormWrapper>

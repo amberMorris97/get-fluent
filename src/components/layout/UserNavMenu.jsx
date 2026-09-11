@@ -6,6 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { AuthContext } from '../../context/AuthContext';
 import { requestLogout } from '../../services/authService';
+import { removeTokenFromStorage } from '../../services/storageService';
 
 library.add(fas)
 
@@ -23,7 +24,7 @@ const NavLinks = () => {
             removeTokenFromStorage();
             navigate('/');
         } catch (error) {
-            console.error('Error logging out.');
+            console.error(error);
             // TODO: Give user feedback
         }
        
