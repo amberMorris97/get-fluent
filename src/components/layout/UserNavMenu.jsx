@@ -1,13 +1,33 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router';
 import Button from '../common/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import { AuthContext } from '../../context/AuthContext';
+import { requestLogout } from '../../services/authService';
 
 library.add(fas)
 
 const NavLinks = () => {
+    const { setAuth } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const handleLogOut = async () => {
+        try {
+            await requestLogout();
+            setAuth({
+                token: null,
+                email: null,
+                isAuthenticated: false,
+            });
+            removeTokenFromStorage();
+            navigate('/');
+        } catch (error) {
+            console.error('Error logging out.');
+            // TODO: Give user feedback
+        }
+       
+}
     return (
         <div className='nav-links'>
             <Link to="/">
@@ -19,7 +39,7 @@ const NavLinks = () => {
             <Link to="/profile">
               Profile
             </Link>
-            <Link to="/logout">
+            <Link to="/" onClick={handleLogOut}>
               Logout
             </Link>
         </div>
@@ -28,6 +48,7 @@ const NavLinks = () => {
 
 const UserNavMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
+
 
     const toggleIcon = <FontAwesomeIcon icon="fa-solid fa-align-justify" />;
     
