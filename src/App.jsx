@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router';
-import Header from './components/layout/Header';
 import HomePage from './components/pages/HomePage';
 
 import './App.css';
@@ -19,49 +18,14 @@ import { AuthContext } from './context/AuthContext';
 import PublicHeader from './components/layout/PublicHeader';
 import UserHeader from './components/layout/UserHeader';
 import UserProfilePage from './components/pages/UserProfilePage';
+import { DataContext } from './context/DataContext';
 
 function App() {
-  const [allPhrases, setAllPhrases] = useState(null);
   const [currentPhrase, setCurrentPhrase] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
-
   const { auth } = useContext(AuthContext);
 
-  const fetchPhrases = async () => {
-      let phrases = [];
-
-      try {
-          const response = await fetch(`https://docs.google.com/document/d/1_o_TSi7t8-s5K8uS3xBMxIzv8UCkRyjt2wOZddbw9JI/export?format=txt&cb=${Date.now()}`);
-
-          if (!response.ok) {
-              const errorData = await response.json();
-              throw new Error(errorData.message || `ERROR - Status ${response.status}`);
-          } else {
-              const data = await response.json(); 
-              phrases = data.map((phrase) => {
-                  let newPhrase = {
-                      id: phrase.id,
-                      phrase: phrase.phrase,
-                      translation: phrase.translation,
-                      pronunciation: phrase.pronunciation,
-                  }
-
-                  return newPhrase;
-              });
-          }
-      } catch (error) {
-          console.error(error.message);
-      } finally {
-          setIsLoading(false);
-          setAllPhrases(phrases);
-          setCurrentPhrase(generatePhrase(phrases));
-      }
-    };
-
-    useEffect(() => {
-        fetchPhrases();
-    }, []);
+  const { isLoading, allPhrases } = useContext(DataContext);
 
   const renderResourceData = resourceData.map((resource, idx) => {
     return (
@@ -76,17 +40,49 @@ function App() {
 
   return (
     <div className="app-container">
-      {!auth.isAuthenticated ? (
-        <>
-          <PublicHeader setIsOpen={isOpen} />
-        </>
-      ) : (
-        <UserHeader setIsOpen={isOpen} />
-      )}
+      {auth.isAuthenticated ? <UserHeader /> : <PublicHeader />}
       {isLoading ? (
         <div>Loading...</div>
-      ) : (
-        <>
+      ) : !auth.isAuthenticated ? (
+          <Routes>
+            <Route path="/" element={
+              <HomePage
+                  setCurrentPhrase={setCurrentPhrase}
+                  currentPhrase={currentPhrase}  
+                />
+            } />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/all-phrases" element={<AllPhrasesPage allPhrases={allPhrases} />} />
+                
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="*" element={<Navigate to="/" />} />        
+              </Routes>
+
+        ) : (
+          <Routes>
+              <Route path="/" element={
+                <HomePage
+                  setCurrentPhrase={setCurrentPhrase}
+                  currentPhrase={currentPhrase}
+                />
+              } />
+              <Route path="/profile" element={<UserProfilePage />} />
+              <Route path="/flashcards" element={<FlashcardPage />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+        )}
+   
+      <Footer />
+    </div>
+  );
+};
+
+export default App;              
+
+
+/**
+ * <>
           <Modal className="intro-modal" open={isOpen} onClose={() => setIsOpen(false)}>
           <div className="modal-inner">
             <span className="before-you-start">BEFORE YOU START</span>
@@ -102,28 +98,4 @@ function App() {
             </div>
           </div>
         </Modal>
-        <Routes>
-          <Route path="/" element={
-            <HomePage
-              allPhrases={allPhrases}
-              setCurrentPhrase={setCurrentPhrase}
-              currentPhrase={currentPhrase}  
-            />
-              } />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/flashcards" element={<FlashcardPage />} />
-          <Route path="/all-phrases" element={<AllPhrasesPage allPhrases={allPhrases} />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/user/profile" element={<UserProfilePage />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </>
-      )}
-      
-      <Footer />
-    </div>
-  );
-};
-
-export default App;
+ */

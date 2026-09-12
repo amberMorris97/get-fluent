@@ -4,9 +4,12 @@ import Card from '../common/Card';
 import Button from '../common/Button';
 import Modal from '../common/Modal';
 import { DataContext } from '../../context/DataContext';
+import { AuthContext } from '../../context/AuthContext';
 
-const HomePage = ({ setCurrentPhrase, currentPhrase }) => {
+const HomePage = () => {
     const { allPhrases, setAllPhrases } = useContext(DataContext);
+    const { auth, setAuth } = useContext(AuthContext);
+    const [currentPhrase, setCurrentPhrase] = useState(generatePhrase(allPhrases));
     
     const [isOpen, setIsOpen] = useState(false);
     const [alreadyExistsModalOpen, setAlreadyExistsModalOpen] = useState(false);
