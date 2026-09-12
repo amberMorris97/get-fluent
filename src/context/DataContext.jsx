@@ -1,6 +1,6 @@
 import { useState, createContext, useEffect, useContext } from "react";
 import { requestAllPhrases } from "../services/phraseService";
-import { requestAddFlashcard, requestUserFlashcards } from "../services/UserFlashcardService";
+import { requestAddFlashcard, requestDeleteFlashcard, requestUserFlashcards } from "../services/UserFlashcardService";
 import { AuthContext } from "./AuthContext";
 
 export const DataContext = createContext();
@@ -48,7 +48,6 @@ export const DataContextProvider = ({ children }) => {
                     phrase: matchingPhrase,
                 };
             });
-            console.log(flashcards)
             setUserFlashcards(flashcards);
         } catch(error) {
             throw error;
@@ -64,6 +63,16 @@ export const DataContextProvider = ({ children }) => {
             throw error;
         } finally {
             fetchUserFlashcards(email);
+        }
+    }
+
+    const deleteUserFlashcard = async (flashcardId) => {
+        try {
+            await requestDeleteFlashcard(flashcardId);
+        } catch(error) {
+            throw error;
+        } finally {
+            fetchUserFlashcards(auth.email);
         }
     }
 
@@ -85,7 +94,8 @@ export const DataContextProvider = ({ children }) => {
             allPhrases,
             setAllPhrases,
             addUserFlashcard,
-            userFlashcards
+            userFlashcards,
+            deleteUserFlashcard,
         }}>
             {!isLoading && children}
         </DataContext.Provider>

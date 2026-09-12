@@ -7,3 +7,7 @@ export const requestUserFlashcards = (email) => {
 export const requestAddFlashcard = (email, phraseId) => {
     return apiClient.post('/userFlashcards/addFlashcard', { email, phraseId, status: "NEEDS_WORK" });
 };
+
+export const requestDeleteFlashcard = (flashcardId) => {
+    return apiClient.delete(`/userFlashcards/${flashcardId}`);
+};
