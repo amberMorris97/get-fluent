@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const UserFlashcardPreview = ({ flashcard }) => {
-    console.log(flashcard)
+  
     return (
         <div className="user-flashcard-preview">
             <FontAwesomeIcon icon="fa-solid fa-trash" />
