@@ -7,6 +7,7 @@ export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
+    const [isFlashcardsLoading, setIsFlashcardsLoading] = useState(true);
 
     const [allPhrases, setAllPhrases] = useState(null);
     const [userFlashcards, setUserFlashcards] = useState(null);
@@ -33,16 +34,26 @@ export const DataContextProvider = ({ children }) => {
             console.error(error);
             // TODO: Give userfeedback
         } finally {
-            setIsLoading(false);
+            setIsLoading(false)
         }
     };
 
     const fetchUserFlashcards = async (email) => {
         try {
             let response = await requestUserFlashcards(email);
-            setUserFlashcards(response.data);
+            let flashcards = response.data.map((flashcard) => {
+                const matchingPhrase = allPhrases.find((phrase) => phrase.id === flashcard.phraseId);
+                return {
+                    ...flashcard,
+                    phrase: matchingPhrase,
+                };
+            });
+            console.log(flashcards)
+            setUserFlashcards(flashcards);
         } catch(error) {
             throw error;
+        } finally {
+            setIsFlashcardsLoading(false);
         }
     }
 
@@ -58,15 +69,24 @@ export const DataContextProvider = ({ children }) => {
 
     useEffect(() => {
         fetchPhrases();
+    }, []);
 
-        if (auth.isAuthenticated) {
+    useEffect(() => {
+        if (auth.isAuthenticated && allPhrases !== null) {
             fetchUserFlashcards(auth.email);
         }
-    }, []);
+    }, [allPhrases]);
 
 
     return (
-        <DataContext.Provider value={{ isLoading, allPhrases, setAllPhrases, addUserFlashcard, userFlashcards }}>
+        <DataContext.Provider value={{ 
+            isLoading, 
+            isFlashcardsLoading,
+            allPhrases,
+            setAllPhrases,
+            addUserFlashcard,
+            userFlashcards
+        }}>
             {!isLoading && children}
         </DataContext.Provider>
     );

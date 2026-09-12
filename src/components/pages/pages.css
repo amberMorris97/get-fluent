@@ -94,7 +94,7 @@
     height: 70vh;
     margin-right: 30vw;
     margin-top: 75px;
-
+    overflow-y: scroll;
 }
 
 .user-profile-content-box-btns {
@@ -102,6 +102,21 @@
     display: flex;
     gap: 1em;
     justify-content: center;
+    
+}
+
+.user-flashcards-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 25px;
+}
+
+.user-flashcard-preview {
+    border: 1px solid;
+    width: 25%;
+    height: 50%;
+    padding: 25px;
 }
 
 @media (max-width: 767px) {
