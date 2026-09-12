@@ -7,7 +7,7 @@ import { DataContext } from '../../context/DataContext';
 import { AuthContext } from '../../context/AuthContext';
 
 const HomePage = () => {
-    const { allPhrases, setAllPhrases } = useContext(DataContext);
+    const { allPhrases, setAllPhrases, addUserFlashcard } = useContext(DataContext);
     const { auth, setAuth } = useContext(AuthContext);
     const [currentPhrase, setCurrentPhrase] = useState(generatePhrase(allPhrases));
     
@@ -19,17 +19,18 @@ const HomePage = () => {
         setCurrentPhrase(generatePhrase(allPhrases));
     };
 
-    const addToFlashCards = () => {
+    const addToFlashCards = async () => {
         /** check if the current phrase is already a flashcard, if so notify the user and return */
-        if (localStorage.getItem(currentPhrase.id)) {
-            setAlreadyExistsModalOpen(true);
-
-            return;
-        }
-        
-        localStorage.setItem(currentPhrase.id, JSON.stringify(currentPhrase));
-        setIsOpen(true);                    
-    }  
+        const { email } = auth;
+        try {
+            await addUserFlashcard(email, currentPhrase.id);
+            setIsOpen(true);
+        } catch(error) {
+            if (error.response?.status === 409) {
+                setAlreadyExistsModalOpen(true);
+            }
+        } 
+    };
 
     return (
         <section className='home-page'>

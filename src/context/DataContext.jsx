@@ -1,6 +1,7 @@
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext, useEffect, useContext } from "react";
 import { requestAllPhrases } from "../services/phraseService";
-import { requestAddFlashcard } from "../services/UserFlashcardService";
+import { requestAddFlashcard, requestAllFlashcards } from "../services/UserFlashcardService";
+import { AuthContext } from "./AuthContext";
 
 export const DataContext = createContext();
 
@@ -8,7 +9,9 @@ export const DataContextProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     const [allPhrases, setAllPhrases] = useState(null);
-    const [flashcards, setFlashcards] = useState(null);
+    const [userFlashcards, setUserFlashcards] = useState(null);
+
+    const { auth } = useContext(AuthContext);
     
     const fetchPhrases = async () => {
         let phrases = [];
@@ -34,58 +37,49 @@ export const DataContextProvider = ({ children }) => {
         }
     };
 
-    const fetchFlashcards = async (userId) => {
+    const fetchUserFlashcards = async (email) => {
         let flashcards = [];
-
         try {
-            let response = await requestAllFlashcards(userId);
+            let response = await requestAllFlashcards(email);
 
             if (response.status !== 200) {
-                // TODO: handle error
-                const errorData = await response;
+                // TODO: handle error gracefully
+                const errorData = response;
                 throw new Error(
                     errorData.message || `ERROR - Status ${response.status}`,
                 );
             } else {
-                const data = await response.data;
-                console.log(data);
+                flashcards = response.data;
             }
         } catch(error) {
             console.error(error);
             // TODO: Give user feedback
         } finally {
-            setFlashcards(flashcards)
+            setUserFlashcards(flashcards)
         }
     }
 
-    const addUserFlashcard = async (userId, phraseId) => {
+    const addUserFlashcard = async (email, phraseId) => {
         try {
-            let response = await requestAddFlashcard(userId, phraseId);
-            if (response.status !== 200) {
-                // TODO: handle error
-                const errorData = await response;
-                throw new Error(
-                    errorData.message || `ERROR - Status ${response.status}`,
-                );
-            } else {
-                const data = await response.data;
-                console.log(data);
-            }
+            await requestAddFlashcard(email, phraseId);
         } catch (error) {
-            console.error(error);
-            // TODO: Give user feedback
+            throw error;
         } finally {
-            setFlashcards
+            fetchUserFlashcards(email);
         }
     }
 
     useEffect(() => {
         fetchPhrases();
+
+        if (auth.isAuthenticated) {
+            fetchUserFlashcards(auth.email);
+        }
     }, []);
 
 
     return (
-        <DataContext.Provider value={{ isLoading, allPhrases, setAllPhrases }}>
+        <DataContext.Provider value={{ isLoading, allPhrases, setAllPhrases, addUserFlashcard }}>
             {!isLoading && children}
         </DataContext.Provider>
     );
