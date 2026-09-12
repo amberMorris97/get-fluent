@@ -1,6 +1,6 @@
 import { useState, createContext, useEffect, useContext } from "react";
 import { requestAllPhrases } from "../services/phraseService";
-import { requestAddFlashcard, requestAllFlashcards } from "../services/UserFlashcardService";
+import { requestAddFlashcard, requestUserFlashcards } from "../services/UserFlashcardService";
 import { AuthContext } from "./AuthContext";
 
 export const DataContext = createContext();
@@ -40,20 +40,11 @@ export const DataContextProvider = ({ children }) => {
     const fetchUserFlashcards = async (email) => {
         let flashcards = [];
         try {
-            let response = await requestAllFlashcards(email);
-
-            if (response.status !== 200) {
-                // TODO: handle error gracefully
-                const errorData = response;
-                throw new Error(
-                    errorData.message || `ERROR - Status ${response.status}`,
-                );
-            } else {
-                flashcards = response.data;
-            }
+            let response = await requestUserFlashcards(email);
+            console.log(response.data);
+            flashcards = response.data;
         } catch(error) {
-            console.error(error);
-            // TODO: Give user feedback
+            throw error;
         } finally {
             setUserFlashcards(flashcards)
         }

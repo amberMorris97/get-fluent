@@ -1,7 +1,7 @@
 import apiClient from "../config/api-client";
 
-export const requestAllFlashcards = (userId) => {
-    return apiClient.get(`/userFlashcards/:${userId}`);
+export const requestUserFlashcards = (email) => {
+    return apiClient.get(`/userFlashcards/${email}`);
 };
 
 export const requestAddFlashcard = (email, phraseId) => {
