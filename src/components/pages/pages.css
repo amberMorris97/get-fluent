@@ -83,6 +83,53 @@
     padding: 15px;
 }
 
+.user-profile-page {
+    display: flex;
+    justify-content: center;
+}
+
+.user-profile-content-box {
+    border: 1px solid;
+    width: 60vw;
+    height: 70vh;
+    margin-right: 30vw;
+    margin-top: 75px;
+    overflow-y: scroll;
+}
+
+.user-profile-content-box-btns {
+    padding: 25px;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    
+}
+
+.user-flashcards-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 25px;
+}
+
+.user-flashcard-preview {
+    border: 1px solid;
+    border-radius: 12px;
+    width: 25%;
+    height: 25vh;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.user-flashcard-preview h3 {
+    font-weight: 200;
+    font-style: italic;
+}
+
 @media (max-width: 767px) {
     .about-page p {
         font-size: small;

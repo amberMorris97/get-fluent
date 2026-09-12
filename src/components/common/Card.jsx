@@ -19,8 +19,8 @@ const Card = ({ type, phrase, flipped, onClick }) => {
         return (
             <div className="card phrase-card">
                 <div className="card-inner phrase-card-inner">
-                    <h3>{phrase.phrase}</h3>
-                    <h4>{phrase.translation}</h4>
+                    <h3>{phrase.haitianCreole}</h3>
+                    <h4>{phrase.english}</h4>
                     <span className="phrase-pronunciation">{phrase.pronunciation}</span>
               </div>
             </div>

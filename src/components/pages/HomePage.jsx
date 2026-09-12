@@ -1,10 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import generatePhrase from '../../utils/generatePhrase';
 import Card from '../common/Card';
 import Button from '../common/Button';
 import Modal from '../common/Modal';
+import { DataContext } from '../../context/DataContext';
+import { AuthContext } from '../../context/AuthContext';
 
-const HomePage = ({ allPhrases, setCurrentPhrase, currentPhrase }) => {
+const HomePage = () => {
+    const { allPhrases, setAllPhrases, addUserFlashcard } = useContext(DataContext);
+    const { auth, setAuth } = useContext(AuthContext);
+    const [currentPhrase, setCurrentPhrase] = useState(generatePhrase(allPhrases));
+    
     const [isOpen, setIsOpen] = useState(false);
     const [alreadyExistsModalOpen, setAlreadyExistsModalOpen] = useState(false);
 
@@ -13,17 +19,18 @@ const HomePage = ({ allPhrases, setCurrentPhrase, currentPhrase }) => {
         setCurrentPhrase(generatePhrase(allPhrases));
     };
 
-    const addToFlashCards = () => {
+    const addToFlashCards = async () => {
         /** check if the current phrase is already a flashcard, if so notify the user and return */
-        if (localStorage.getItem(currentPhrase.id)) {
-            setAlreadyExistsModalOpen(true);
-
-            return;
-        }
-        
-        localStorage.setItem(currentPhrase.id, JSON.stringify(currentPhrase));
-        setIsOpen(true);                    
-    }  
+        const { email } = auth;
+        try {
+            await addUserFlashcard(email, currentPhrase.id);
+            setIsOpen(true);
+        } catch(error) {
+            if (error.response?.status === 409) {
+                setAlreadyExistsModalOpen(true);
+            }
+        } 
+    };
 
     return (
         <section className='home-page'>
