@@ -38,15 +38,11 @@ export const DataContextProvider = ({ children }) => {
     };
 
     const fetchUserFlashcards = async (email) => {
-        let flashcards = [];
         try {
             let response = await requestUserFlashcards(email);
-            console.log(response.data);
-            flashcards = response.data;
+            setUserFlashcards(response.data);
         } catch(error) {
             throw error;
-        } finally {
-            setUserFlashcards(flashcards)
         }
     }
 
@@ -70,7 +66,7 @@ export const DataContextProvider = ({ children }) => {
 
 
     return (
-        <DataContext.Provider value={{ isLoading, allPhrases, setAllPhrases, addUserFlashcard }}>
+        <DataContext.Provider value={{ isLoading, allPhrases, setAllPhrases, addUserFlashcard, userFlashcards }}>
             {!isLoading && children}
         </DataContext.Provider>
     );

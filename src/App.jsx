@@ -13,7 +13,6 @@ import resourceData from './components/mock-data/resourceData';
 import AllPhrasesPage from './components/pages/AllPhrasesPage';
 import LoginPage from './components/pages/auth/LoginPage';
 import RegisterPage from './components/pages/auth/RegisterPage';
-import generatePhrase from './utils/generatePhrase';
 import { AuthContext } from './context/AuthContext';
 import PublicHeader from './components/layout/PublicHeader';
 import UserHeader from './components/layout/UserHeader';
@@ -21,7 +20,6 @@ import UserProfilePage from './components/pages/UserProfilePage';
 import { DataContext } from './context/DataContext';
 
 function App() {
-  const [currentPhrase, setCurrentPhrase] = useState(null);
   const [isOpen, setIsOpen] = useState(true);
   const { auth } = useContext(AuthContext);
 
@@ -46,10 +44,7 @@ function App() {
       ) : !auth.isAuthenticated ? (
           <Routes>
             <Route path="/" element={
-              <HomePage
-                  setCurrentPhrase={setCurrentPhrase}
-                  currentPhrase={currentPhrase}  
-                />
+              <HomePage />
             } />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/all-phrases" element={<AllPhrasesPage allPhrases={allPhrases} />} />
@@ -62,10 +57,7 @@ function App() {
         ) : (
           <Routes>
               <Route path="/" element={
-                <HomePage
-                  setCurrentPhrase={setCurrentPhrase}
-                  currentPhrase={currentPhrase}
-                />
+                <HomePage />
               } />
               <Route path="/profile" element={<UserProfilePage />} />
               <Route path="/flashcards" element={<FlashcardPage />} />
