@@ -11,15 +11,15 @@ function shuffle(array) {
 }
 const QuizPage = () => {
     const navigate = useNavigate();
-    const { userFlashcards, isLoading } = useContext(DataContext);
+    const { userFlashcards, isLoading, submitQuizScore } = useContext(DataContext);
 
+    const [submitting, setSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState(null);
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [currentQuestion, setCurrentQuestion] = useState(0);
     const [feedback, setFeedback] = useState(null);
     const [showNext, setShowNext] = useState(false);
     const [score, setScore] = useState(0);
-    const [quizComplete, setQuizComplete] = useState(false);
     const [userAnswer, setUserAnswer] = useState('');
     const [quizStarted, setQuizStarted] = useState(false);
 
@@ -38,9 +38,17 @@ const QuizPage = () => {
         setUserAnswer(e.target.value);
     };
 
-    const handleNextQuestion = () => {
+    const handleNextQuestion = async () => {
         if (currentIndex === questions.length - 1) {
-            navigate('/quizResults', { state: { score, total: questions.length } });
+            setSubmitting(true);
+            setSubmitError(null);
+            try {
+                await submitQuizScore(score, questions.length);
+                navigate('/quizResults', { state: { score, total: questions.length } });
+            } catch(error) {
+                setSubmitError("Couldn't save your score. Please try again.");
+                console.error(error)// TODO: Give user feedback
+            } 
         } else {
             setCurrentIndex(currentIndex + 1);
             setUserAnswer('');
@@ -84,6 +92,7 @@ const QuizPage = () => {
                     handleNextQuestion={handleNextQuestion}
                     showNext={showNext}
                     userAnswer={userAnswer}
+                    submitting={submitting}
                 />
             )}
         </div>

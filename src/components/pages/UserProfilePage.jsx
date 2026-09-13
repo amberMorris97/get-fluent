@@ -19,7 +19,7 @@ const UserProfilePage = () => {
     }
 
     const flashcardsDisplay = filteredFlashcards.map((flashcard) => {
-        return <UserFlashcardPreview flashcard={flashcard} />
+        return <UserFlashcardPreview key={`${flashcard.flashcardId}-flashcard-preview`} flashcard={flashcard} />
     });    
     
     return (

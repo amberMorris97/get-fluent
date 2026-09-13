@@ -1,7 +1,7 @@
 import Button from "../../common/Button";
 import Input from "../../common/forms/inputs/Input";
 
-const QuizCard = ({ questions, currentIndex, userAnswer, handleInputChange, handleSubmitAnswer, showNext, handleNextQuestion }) => {
+const QuizCard = ({ questions, currentIndex, userAnswer, handleInputChange, handleSubmitAnswer, showNext, handleNextQuestion, submitting }) => {
     const { phrase } = questions[currentIndex];
     return (
         <div className="quiz-content-box">
@@ -23,6 +23,7 @@ const QuizCard = ({ questions, currentIndex, userAnswer, handleInputChange, hand
             <Button 
                 label={showNext ? "Next" : "Submit Answer"}
                 onClick={showNext ? handleNextQuestion : handleSubmitAnswer}
+                disabled={submitting}
                 className="btn"
             />
         </div>
