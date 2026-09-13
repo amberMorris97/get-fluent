@@ -130,6 +130,27 @@
     font-style: italic;
 }
 
+.quiz-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz-content-box {
+    border: 1px solid;
+    width: 75vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.question-answer-input {
+    width: 50%;
+    height: 50%;
+}
 @media (max-width: 767px) {
     .about-page p {
         font-size: small;

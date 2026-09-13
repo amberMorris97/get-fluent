@@ -18,6 +18,8 @@ import PublicHeader from './components/layout/PublicHeader';
 import UserHeader from './components/layout/UserHeader';
 import UserProfilePage from './components/pages/UserProfilePage';
 import { DataContext } from './context/DataContext';
+import QuizPage from './components/pages/quiz/QuizPage';
+import QuizResults from './components/pages/quiz/QuizResults';
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -48,12 +50,11 @@ function App() {
             } />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/all-phrases" element={<AllPhrasesPage allPhrases={allPhrases} />} />
-                
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="*" element={<Navigate to="/" />} />        
-              </Routes>
-
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="*" element={<Navigate to="/" />} />        
+          </Routes>
+ 
         ) : (
           <Routes>
               <Route path="/" element={
@@ -61,6 +62,8 @@ function App() {
               } />
               <Route path="/profile" element={<UserProfilePage />} />
               <Route path="/flashcards" element={<FlashcardPage />} />
+              <Route path="/quiz" element={<QuizPage />} />
+              <Route path="/quizResults" element={<QuizResults />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         )}

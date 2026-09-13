@@ -10,7 +10,6 @@ const UserProfilePage = () => {
     const [statusFilter, setStatusFilter] = useState('all');
 
     const filteredFlashcards = userFlashcards?.filter((flashcard) => {
-        console.log(flashcard.status)
         if (statusFilter === 'all') return true;
         return flashcard.status.toLowerCase() === statusFilter;
     });
