@@ -1,16 +1,18 @@
 import Button from './Button';
 
 const Card = ({ type, phrase, flipped, onClick }) => {
+    const { id, english, haitianCreole, pronunciation } = phrase;
+
     if (type === 'flashcards') {
         return (
             <div className={`card flashcard ${flipped ? 'flipped' : ''}`} onClick={onClick}>
                 <div className="card-inner flashcard-inner">
                     <div className="flashcard-front">
-                        <h3>{phrase.phrase}</h3>
+                        <h3>{haitianCreole}</h3>
                         <span className="phrase-pronunciation">{phrase.pronunciation}</span>
                     </div>
                     <div className="flashcard-back">
-                        <h3>{phrase.translation}</h3>
+                        <h3>{english}</h3>
                     </div>
                 </div>
             </div>
@@ -19,8 +21,8 @@ const Card = ({ type, phrase, flipped, onClick }) => {
         return (
             <div className="card phrase-card">
                 <div className="card-inner phrase-card-inner">
-                    <h3>{phrase.haitianCreole}</h3>
-                    <h4>{phrase.english}</h4>
+                    <h3>{haitianCreole}</h3>
+                    <h4>{english}</h4>
                     <span className="phrase-pronunciation">{phrase.pronunciation}</span>
               </div>
             </div>

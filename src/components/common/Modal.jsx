@@ -1,20 +1,43 @@
-import { createPortal } from 'react-dom';
-import Button from './Button';
+import { useContext, useEffect, useRef } from 'react';
+import { ModalContext } from '../../context/ModalContext';
 
-const Modal = ({ open, children, onClose, className = ''}) => {
-    if (!open) return null;
+import IconButton from './IconButton';
 
-    return createPortal(
-        <>
-            <div className="modal-overlay">
-                <div className={`modal-content ${className}`}>
-                    <Button label="Get Fluent" className="close-modal-btn" onClick={onClose} />
-                    {children}
+const Modal = () => {
+    const modalRef = useRef(null);
+    const buttonRef = useRef();
+
+    useEffect(() => {
+        buttonRef.current.focus();
+    }, []);
+
+    const { isModalOpen, handleCloseModal, modalContent, modalTitle } = useContext(ModalContext);
+
+    useEffect(() => {
+        if (isModalOpen) {
+            modalRef.current?.showModal();
+        } else {
+            modalRef.current?.close();
+        }
+    }, [isModalOpen]);
+
+    return (
+        <dialog ref={modalRef} onCancel={handleCloseModal} closedby="any">
+            <div className="modal">
+                <div className='modal-top-bar'>
+                    {modalTitle && <div>{modalTitle}</div>}
+                    <IconButton
+                        id='close-modal'
+                        ref={buttonRef}
+                        ariaLabel='Close'
+                        handleClick={handleCloseModal}>
+                        <i className='fa-solid fa-xmark close-modal-icon'></i>   
+                    </IconButton>
                 </div>
+                {modalContent}
             </div>
-        </>,
-        document.getElementById('portal')
-    )
-}
+        </dialog>
+    );
+};
 
 export default Modal;

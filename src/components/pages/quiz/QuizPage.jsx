@@ -4,17 +4,15 @@ import { DataContext } from "../../../context/DataContext";
 import QuizCard from "./QuizCard";
 import Button from "../../common/Button";
 import { checkAnswer } from "./util/checkAnswer";
-import QuizResults from "./QuizResults";
+import { shuffle } from "./util/shuffle";
+import { ModalContext } from "../../../context/ModalContext";
 
-function shuffle(array) {
-    return [...array].sort(() => Math.random() - 0.5);
-}
-const QuizPage = () => {
+const QuizPage = ({ notify }) => {
     const navigate = useNavigate();
     const { userFlashcards, isLoading, submitQuizScore } = useContext(DataContext);
+    const { handleOpenModal } = useContext(ModalContext);
 
     const [submitting, setSubmitting] = useState(false);
-    const [submitError, setSubmitError] = useState(null);
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [feedback, setFeedback] = useState(null);
@@ -29,6 +27,13 @@ const QuizPage = () => {
         }
     }, [userFlashcards]);
 
+    const modalContent = () => {
+        const { phrase } = questions[currentIndex];
+        const questionInfo = `${phrase.haitianCreole} means ${phrase.english}`;
+
+        return ( <p>{questionInfo}</p> );
+    };
+
     const handleStartQuiz = () => {
         setQuizStarted(true);
         setCurrentIndex(0);
@@ -41,13 +46,12 @@ const QuizPage = () => {
     const handleNextQuestion = async () => {
         if (currentIndex === questions.length - 1) {
             setSubmitting(true);
-            setSubmitError(null);
             try {
                 await submitQuizScore(score, questions.length);
+                notify(true, "Quiz submitted successfully");
                 navigate('/quizResults', { state: { score, total: questions.length } });
             } catch(error) {
-                setSubmitError("Couldn't save your score. Please try again.");
-                console.error(error)// TODO: Give user feedback
+                notify(false, "Error submitting your score. Please try again.");
             } 
         } else {
             setCurrentIndex(currentIndex + 1);
@@ -59,13 +63,10 @@ const QuizPage = () => {
     const handleSubmitAnswer = (e) => {
         e.preventDefault();
         if (checkAnswer(userAnswer, questions[currentIndex].phrase.english)) {
-            // TODO: add user feedback (CORRECT modal)
-            setFeedback('correct');
-            console.log(feedback);
+            handleOpenModal(modalContent, 'CORRECT', 'quiz');
             setScore(prev => prev + 1); 
         } else {
-            setFeedback('wrong');
-            console.log(feedback);
+            handleOpenModal(modalContent, 'WRONG', 'quiz');
         }
 
         setShowNext(true);

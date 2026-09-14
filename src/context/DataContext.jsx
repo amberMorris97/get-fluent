@@ -15,6 +15,9 @@ export const DataContextProvider = ({ children }) => {
     const [userQuizScores, setUserQuizScores] = useState(null);
 
     const { auth } = useContext(AuthContext);
+    const { isAuthenticated } = auth;
+    
+    const email = isAuthenticated ? auth.email : undefined;
     
     const fetchPhrases = async () => {
         try {
@@ -23,11 +26,11 @@ export const DataContextProvider = ({ children }) => {
         } catch(error) {
             throw error;
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
         }
     };
 
-    const fetchUserFlashcards = async (email) => {
+    const fetchUserFlashcards = async () => {
         try {
             let response = await requestUserFlashcards(email);
             let flashcards = response.data.map((flashcard) => {
@@ -45,7 +48,7 @@ export const DataContextProvider = ({ children }) => {
         }
     };
 
-    const addUserFlashcard = async (email, phraseId) => {
+    const addUserFlashcard = async (phraseId) => {
         try {
             await requestAddFlashcard(email, phraseId);
         } catch (error) {
@@ -61,11 +64,11 @@ export const DataContextProvider = ({ children }) => {
         } catch(error) {
             throw error;
         } finally {
-            fetchUserFlashcards(auth.email);
+            fetchUserFlashcards(email);
         }
     };
 
-    const fetchQuizScores = async (email) => {
+    const fetchQuizScores = async () => {
         try {
             let response = await requestQuizScores(email);
             setUserQuizScores(response.data);
@@ -76,35 +79,35 @@ export const DataContextProvider = ({ children }) => {
 
     const submitQuizScore = async (score, quizLength) => {
         try {
-            await requestSubmitQuizScore(auth.email, score, quizLength);
+            await requestSubmitQuizScore(mail, score, quizLength);
         } catch(error) {
             throw error;
         } finally {
             // TODO:
-            fetchQuizScores(auth.email);
+            fetchQuizScores(email);
         }
     };
 
     const updateUserFlashcard = async (flashcardStatus, flashcardId) => {
         try {
-            await requestUpdateFlashcardStatus(auth.email, flashcardStatus, flashcardId);
-            fetchUserFlashcards(auth.email);
+            await requestUpdateFlashcardStatus(email, flashcardStatus, flashcardId);
+            fetchUserFlashcards(email);
         } catch (error) {
             console.error(error)
             throw error;
         }
-    }
+    };
 
     useEffect(() => {
         fetchPhrases();
     }, []);
 
     useEffect(() => {
-        if (auth.isAuthenticated && allPhrases !== null) {
-            fetchUserFlashcards(auth.email);
-            fetchQuizScores(auth.email);
+        if (isAuthenticated && allPhrases !== null) {
+            fetchUserFlashcards(email);
+            fetchQuizScores(email);
         }
-    }, [auth.isAuthenticated, allPhrases]);
+    }, [isAuthenticated, allPhrases]);
 
 
     return (

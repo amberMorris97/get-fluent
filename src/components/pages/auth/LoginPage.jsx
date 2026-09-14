@@ -20,7 +20,7 @@ const errorMessages = {
     genericError: 'There was an error logging you in.',
 };
 
-const LoginPage = () => {
+const LoginPage = ({ notify }) => {
     const { setAuth } = useContext(AuthContext);
     const [user, setUser] = useState(initialUser);
     const [hasErrors, setHasErrors] = useState(false);
@@ -38,6 +38,7 @@ const LoginPage = () => {
                 setEmailInStorage(user.email);
                 setTokenInStorage(token);
                 setAuth({ token, email: user.email, isAuthenticated: true });
+                notify(true, "Success logging you in.");
                 navigate('/');
             }
         } catch (error) {
@@ -47,6 +48,7 @@ const LoginPage = () => {
             } else {
                 setApiError(errorMessages['genericError']);
             } 
+            notify(false, "There was an error logging you in.");
         } finally {
             setSubmitting(false);
         }
@@ -63,6 +65,7 @@ const LoginPage = () => {
         e.preventDefault();
 
         if (user.email === '' || user.password === '') {
+            notify(false);
             setSubmitting(false);
             setHasErrors(true);
         } else {
