@@ -3,10 +3,11 @@ import { AuthContext } from "../../context/AuthContext";
 import { DataContext } from "../../context/DataContext";
 import Button from "../common/Button";
 import UserFlashcardPreview from "./flashcards/UserFlashcardPreview";
+import QuizScoreDisplay from "./quiz/QuizScoreDisplay";
 
 const UserProfilePage = () => {
     const { auth } = useContext(AuthContext);
-    const { userFlashcards, isFlashcardsLoading } = useContext(DataContext);
+    const { userFlashcards, isFlashcardsLoading, userQuizScores } = useContext(DataContext);
     const [statusFilter, setStatusFilter] = useState('all');
 
     const filteredFlashcards = userFlashcards?.filter((flashcard) => {
@@ -42,6 +43,10 @@ const UserProfilePage = () => {
                 <div className="user-flashcards-box">
                     {flashcardsDisplay}
                 </div>
+            </div>
+
+            <div className="quiz-score-display-wrapper">
+                <QuizScoreDisplay userQuizScores={userQuizScores} />
             </div>
         </section>
     );

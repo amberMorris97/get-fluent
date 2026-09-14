@@ -208,6 +208,13 @@
     font-size: x-small;
 }
 
+.status-btn {
+    width: 75px;
+    height: 25px;
+    border: none;
+    box-shadow: none;
+}
+
 @media (max-width: 300px) {
     .phrase-card h3, .flashcard h3 {
         font-size: large;

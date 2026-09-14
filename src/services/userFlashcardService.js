@@ -11,3 +11,7 @@ export const requestAddFlashcard = (email, phraseId) => {
 export const requestDeleteFlashcard = (flashcardId) => {
     return apiClient.delete(`/userFlashcards/${flashcardId}`);
 };
+
+export const requestUpdateFlashcardStatus = (email, flashcardStatus, flashcardId) => {
+    return apiClient.put(`/userFlashcards/update/${flashcardId}`, { email, status: flashcardStatus })
+}

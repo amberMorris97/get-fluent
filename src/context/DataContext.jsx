@@ -1,8 +1,8 @@
 import { useState, createContext, useEffect, useContext } from "react";
 import { requestAllPhrases } from "../services/phraseService";
-import { requestAddFlashcard, requestDeleteFlashcard, requestUserFlashcards } from "../services/UserFlashcardService";
+import { requestAddFlashcard, requestDeleteFlashcard, requestUpdateFlashcardStatus, requestUserFlashcards } from "../services/userFlashcardService";
 import { AuthContext } from "./AuthContext";
-import { requestQuizScores, requestSubmitQuizScore } from "../services/QuizScoreService";
+import { requestQuizScores, requestSubmitQuizScore } from "../services/quizScoreService";
 
 export const DataContext = createContext();
 
@@ -85,6 +85,16 @@ export const DataContextProvider = ({ children }) => {
         }
     };
 
+    const updateUserFlashcard = async (flashcardStatus, flashcardId) => {
+        try {
+            await requestUpdateFlashcardStatus(auth.email, flashcardStatus, flashcardId);
+            fetchUserFlashcards(auth.email);
+        } catch (error) {
+            console.error(error)
+            throw error;
+        }
+    }
+
     useEffect(() => {
         fetchPhrases();
     }, []);
@@ -94,7 +104,7 @@ export const DataContextProvider = ({ children }) => {
             fetchUserFlashcards(auth.email);
             fetchQuizScores(auth.email);
         }
-    }, [allPhrases]);
+    }, [auth.isAuthenticated, allPhrases]);
 
 
     return (
@@ -107,6 +117,8 @@ export const DataContextProvider = ({ children }) => {
             userFlashcards,
             deleteUserFlashcard,
             submitQuizScore,
+            userQuizScores,
+            updateUserFlashcard,
         }}>
             {!isLoading && children}
         </DataContext.Provider>
