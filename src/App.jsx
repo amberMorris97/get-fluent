@@ -70,6 +70,7 @@ function App() {
               <Route path="/" element={
                 <HomePage notify={notify} />
               } />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="/profile" element={<UserProfilePage />} />
               <Route path="/flashcards" element={<FlashcardPage notify={notify} />} />
               <Route path="/quiz" element={<QuizPage notify={notify} />} />
