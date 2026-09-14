@@ -10,7 +10,7 @@ import { removeTokenFromStorage } from '../../services/storageService';
 
 library.add(fas)
 
-const NavLinks = () => {
+const NavLinks = ({ notify }) => {
     const { setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleLogOut = async () => {
@@ -22,10 +22,10 @@ const NavLinks = () => {
                 isAuthenticated: false,
             });
             removeTokenFromStorage();
+            notify(true, "Successfully logged out.");
             navigate('/');
         } catch (error) {
-            console.error(error);
-            // TODO: Give user feedback
+            notify(false, "There was an error logging you out.");
         }
        
 }
@@ -44,10 +44,10 @@ const NavLinks = () => {
               Logout
             </Link>
         </div>
-    )
-}
+    );
+};
 
-const UserNavMenu = () => {
+const UserNavMenu = ({ notify }) => {
     const [isOpen, setIsOpen] = useState(false);
 
 
@@ -60,7 +60,7 @@ const UserNavMenu = () => {
     return (
         <nav className="nav-menu">
             <div className={`nav-container ${isOpen ? 'open' : ''}`}>
-                <NavLinks />
+                <NavLinks notify={notify} />
             </div>
             <span className="nav-toggle" onClick={toggleNavBar}>{toggleIcon}</span>
         </nav>

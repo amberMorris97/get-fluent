@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router';
+import toast, { Toaster } from 'react-hot-toast';
 import HomePage from './components/pages/HomePage';
 
-import './App.css';
 import FlashcardPage from './components/pages/FlashcardPage';
 import AboutPage from './components/pages/AboutPage';
 import Footer from './components/layout/Footer';
@@ -21,11 +21,19 @@ import { DataContext } from './context/DataContext';
 import QuizPage from './components/pages/quiz/QuizPage';
 import QuizResults from './components/pages/quiz/QuizResults';
 
+import './App.css';
+
 function App() {
   const [isOpen, setIsOpen] = useState(true);
   const { auth } = useContext(AuthContext);
 
   const { isLoading, allPhrases } = useContext(DataContext);
+
+  const notify = (successStatus, message) => {
+    if (successStatus) return toast.success(message);
+    return toast.error(message);
+  };
+
 
   const renderResourceData = resourceData.map((resource, idx) => {
     return (
@@ -40,7 +48,8 @@ function App() {
 
   return (
     <div className="app-container">
-      {auth.isAuthenticated ? <UserHeader /> : <PublicHeader />}
+      <Toaster />
+      {auth.isAuthenticated ? <UserHeader notify={notify} /> : <PublicHeader />}
       {isLoading ? (
         <div>Loading...</div>
       ) : !auth.isAuthenticated ? (
@@ -50,7 +59,7 @@ function App() {
             } />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/all-phrases" element={<AllPhrasesPage allPhrases={allPhrases} />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage notify={notify} />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="*" element={<Navigate to="/" />} />        
           </Routes>

@@ -4,11 +4,8 @@ import { DataContext } from "../../../context/DataContext";
 import QuizCard from "./QuizCard";
 import Button from "../../common/Button";
 import { checkAnswer } from "./util/checkAnswer";
-import QuizResults from "./QuizResults";
+import { shuffle } from "./util/shuffle";
 
-function shuffle(array) {
-    return [...array].sort(() => Math.random() - 0.5);
-}
 const QuizPage = () => {
     const navigate = useNavigate();
     const { userFlashcards, isLoading, submitQuizScore } = useContext(DataContext);
