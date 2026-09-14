@@ -14,9 +14,10 @@ const FlashcardPage = ({ notify }) => {
     const { userFlashcards, isFlashcardsLoading, deleteUserFlashcard, fetchUserFlashcards } = useContext(DataContext);
     
     const [currentFlashcardPhrase, setCurrentFlashcardPhrase] = useState(null);
+    const [currentFlashcardId, setCurrentFlashcardId] = useState(null);
 
     useEffect(() => {
-        if (userFlashcards?.length > 0) setCurrentFlashcardPhrase(generatePhrase(userFlashcards).phrase);
+        if (userFlashcards?.length > 0) setCurrentFlashcardPhrase(generatePhrase(userFlashcards, setCurrentFlashcardId).phrase);
     }, [userFlashcards]);
 
     const handleFlipState = () => {
@@ -27,10 +28,10 @@ const FlashcardPage = ({ notify }) => {
         if (flipped) {
             /** make sure translation is not revealed before flip animation finishes */
             setTimeout(() => {
-                setCurrentFlashcardPhrase(generatePhrase(userFlashcards).phrase);
+                setCurrentFlashcardPhrase(generatePhrase(userFlashcards, setCurrentFlashcardId).phrase);
             }, 200);
         } else {
-            setCurrentFlashcardPhrase(generatePhrase(userFlashcards).phrase);
+            setCurrentFlashcardPhrase(generatePhrase(userFlashcards, setCurrentFlashcardId).phrase);
         }
 
         setFlipped(false);
@@ -38,7 +39,7 @@ const FlashcardPage = ({ notify }) => {
 
     const removeFlashcard = async () => {
         try {
-            await deleteUserFlashcard(currentFlashcardPhrase.id);
+            await deleteUserFlashcard(currentFlashcardId);
             notify(true, "Flashcard was deleted");
 
             fetchUserFlashcards();

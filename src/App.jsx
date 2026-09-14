@@ -71,7 +71,7 @@ function App() {
                 <HomePage notify={notify} />
               } />
               <Route path="/profile" element={<UserProfilePage />} />
-              <Route path="/flashcards" element={<FlashcardPage />} />
+              <Route path="/flashcards" element={<FlashcardPage notify={notify} />} />
               <Route path="/quiz" element={<QuizPage notify={notify} />} />
               <Route path="/quizResults" element={<QuizResults />} />
               <Route path="*" element={<Navigate to="/" />} />

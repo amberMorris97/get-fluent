@@ -18,7 +18,7 @@ const HomePage = ({ notify }) => {
         /** check if the current phrase is already a flashcard, if so notify the user and return */
         const { email } = auth;
         try {
-            await addUserFlashcard(email, currentPhrase.id);
+            await addUserFlashcard(currentPhrase.id);
             notify(true, 'Flashcard added!');
         } catch(error) {
             if (error.response?.status === 409) {
