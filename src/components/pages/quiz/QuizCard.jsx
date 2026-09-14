@@ -8,7 +8,7 @@ const QuizCard = ({ questions, currentIndex, userAnswer, handleInputChange, hand
         <div className="quiz-content-box">
             <h1>Flashcard Quiz</h1>
             <div className="quiz-progress-bar"></div>
-            <ProgressBar percent={Math.floor((currentIndex / questions.length) * 100)} />
+            <ProgressBar percent={Math.floor(((currentIndex + 1) / questions.length) * 100)} />
             <span>{`${currentIndex + 1}/${questions.length}`}</span>
             <h3>Type the English translation for:</h3>
             <div className="quiz-ht-phrase">

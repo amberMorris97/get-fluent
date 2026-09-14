@@ -68,11 +68,11 @@ function App() {
         ) : (
           <Routes>
               <Route path="/" element={
-                <HomePage />
+                <HomePage notify={notify} />
               } />
               <Route path="/profile" element={<UserProfilePage />} />
               <Route path="/flashcards" element={<FlashcardPage />} />
-              <Route path="/quiz" element={<QuizPage />} />
+              <Route path="/quiz" element={<QuizPage notify={notify} />} />
               <Route path="/quizResults" element={<QuizResults />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
