@@ -5,10 +5,12 @@ import QuizCard from "./QuizCard";
 import Button from "../../common/Button";
 import { checkAnswer } from "./util/checkAnswer";
 import { shuffle } from "./util/shuffle";
+import { ModalContext } from "../../../context/ModalContext";
 
 const QuizPage = () => {
     const navigate = useNavigate();
     const { userFlashcards, isLoading, submitQuizScore } = useContext(DataContext);
+    const { handleOpenModal } = useContext(ModalContext);
 
     const [submitting, setSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(null);
@@ -25,6 +27,13 @@ const QuizPage = () => {
             setQuestions(shuffle(userFlashcards).slice(0, 10));
         }
     }, [userFlashcards]);
+
+    const modalContent = () => {
+        const { phrase } = questions[currentIndex];
+        const questionInfo = `${phrase.haitianCreole} means ${phrase.english}`;
+
+        return ( <p>{questionInfo}</p> );
+    };
 
     const handleStartQuiz = () => {
         setQuizStarted(true);
@@ -57,11 +66,10 @@ const QuizPage = () => {
         e.preventDefault();
         if (checkAnswer(userAnswer, questions[currentIndex].phrase.english)) {
             // TODO: add user feedback (CORRECT modal)
-            setFeedback('correct');
-            console.log(feedback);
+            handleOpenModal(modalContent, 'CORRECT', 'quiz');
             setScore(prev => prev + 1); 
         } else {
-            setFeedback('wrong');
+            handleOpenModal(modalContent, 'WRONG', 'quiz');
             console.log(feedback);
         }
 

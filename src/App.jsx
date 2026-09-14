@@ -22,18 +22,18 @@ import QuizPage from './components/pages/quiz/QuizPage';
 import QuizResults from './components/pages/quiz/QuizResults';
 
 import './App.css';
+import { ModalContext } from './context/ModalContext';
 
 function App() {
-  const [isOpen, setIsOpen] = useState(true);
   const { auth } = useContext(AuthContext);
 
   const { isLoading, allPhrases } = useContext(DataContext);
+  const { isModalOpen, handleOpenModal, handleCloseModal } = useContext(ModalContext);
 
   const notify = (successStatus, message) => {
     if (successStatus) return toast.success(message);
     return toast.error(message);
   };
-
 
   const renderResourceData = resourceData.map((resource, idx) => {
     return (
@@ -49,6 +49,7 @@ function App() {
   return (
     <div className="app-container">
       <Toaster />
+      <Modal />
       {auth.isAuthenticated ? <UserHeader notify={notify} /> : <PublicHeader />}
       {isLoading ? (
         <div>Loading...</div>
