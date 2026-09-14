@@ -1,7 +1,8 @@
 import { useState, createContext, useEffect, useContext } from "react";
 import { requestAllPhrases } from "../services/phraseService";
-import { requestAddFlashcard, requestDeleteFlashcard, requestUserFlashcards } from "../services/UserFlashcardService";
+import { requestAddFlashcard, requestDeleteFlashcard, requestUpdateFlashcardStatus, requestUserFlashcards } from "../services/userFlashcardService";
 import { AuthContext } from "./AuthContext";
+import { requestQuizScores, requestSubmitQuizScore } from "../services/quizScoreService";
 
 export const DataContext = createContext();
 
@@ -11,28 +12,16 @@ export const DataContextProvider = ({ children }) => {
 
     const [allPhrases, setAllPhrases] = useState(null);
     const [userFlashcards, setUserFlashcards] = useState(null);
+    const [userQuizScores, setUserQuizScores] = useState(null);
 
     const { auth } = useContext(AuthContext);
     
     const fetchPhrases = async () => {
-        let phrases = [];
-        
         try {
             let response = await requestAllPhrases();
             setAllPhrases(response.data);
-            if (response.status !== 200) {
-                // TODO: handle error
-                const errorData = await response;
-                throw new Error(
-                    errorData.message || `ERROR - Status ${response.status}`,
-                );
-            } else {
-                const data = await response.data;
-                phrases = data.slice();
-            }
         } catch(error) {
-            console.error(error);
-            // TODO: Give userfeedback
+            throw error;
         } finally {
             setIsLoading(false)
         }
@@ -54,7 +43,7 @@ export const DataContextProvider = ({ children }) => {
         } finally {
             setIsFlashcardsLoading(false);
         }
-    }
+    };
 
     const addUserFlashcard = async (email, phraseId) => {
         try {
@@ -64,7 +53,7 @@ export const DataContextProvider = ({ children }) => {
         } finally {
             fetchUserFlashcards(email);
         }
-    }
+    };
 
     const deleteUserFlashcard = async (flashcardId) => {
         try {
@@ -73,6 +62,36 @@ export const DataContextProvider = ({ children }) => {
             throw error;
         } finally {
             fetchUserFlashcards(auth.email);
+        }
+    };
+
+    const fetchQuizScores = async (email) => {
+        try {
+            let response = await requestQuizScores(email);
+            setUserQuizScores(response.data);
+        } catch(error) {
+            throw error;
+        } 
+    }
+
+    const submitQuizScore = async (score, quizLength) => {
+        try {
+            await requestSubmitQuizScore(auth.email, score, quizLength);
+        } catch(error) {
+            throw error;
+        } finally {
+            // TODO:
+            fetchQuizScores(auth.email);
+        }
+    };
+
+    const updateUserFlashcard = async (flashcardStatus, flashcardId) => {
+        try {
+            await requestUpdateFlashcardStatus(auth.email, flashcardStatus, flashcardId);
+            fetchUserFlashcards(auth.email);
+        } catch (error) {
+            console.error(error)
+            throw error;
         }
     }
 
@@ -83,8 +102,9 @@ export const DataContextProvider = ({ children }) => {
     useEffect(() => {
         if (auth.isAuthenticated && allPhrases !== null) {
             fetchUserFlashcards(auth.email);
+            fetchQuizScores(auth.email);
         }
-    }, [allPhrases]);
+    }, [auth.isAuthenticated, allPhrases]);
 
 
     return (
@@ -96,6 +116,9 @@ export const DataContextProvider = ({ children }) => {
             addUserFlashcard,
             userFlashcards,
             deleteUserFlashcard,
+            submitQuizScore,
+            userQuizScores,
+            updateUserFlashcard,
         }}>
             {!isLoading && children}
         </DataContext.Provider>

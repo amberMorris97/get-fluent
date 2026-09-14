@@ -16,8 +16,11 @@ const NavLinks = () => {
             <Link to="/about">
               About
             </Link>
-            <Link to="/flashcards">
-              Flashcards
+            <Link to="/login">
+              Login
+            </Link>
+            <Link to="/register">
+              Register
             </Link>
         </div>
     )
