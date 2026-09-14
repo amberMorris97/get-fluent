@@ -164,6 +164,21 @@
     border: 1px solid;
 }
 
+.progress-bar-wrapper {
+    width: 100%;
+    height: 10px;
+    background: #F5EFDD;
+    border: 1px solid #e4dcc4;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #16348C;
+    border-radius: 20px;
+}
+
 
 
 @media (max-width: 767px) {
