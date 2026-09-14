@@ -4,10 +4,14 @@ import Card from '../common/Card';
 import Button from '../common/Button';
 import { DataContext } from '../../context/DataContext';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router';
 
 const HomePage = ({ notify }) => {
+    const navigate = useNavigate();
+
     const { allPhrases, addUserFlashcard } = useContext(DataContext);
     const { auth } = useContext(AuthContext);
+
     const [currentPhrase, setCurrentPhrase] = useState(generatePhrase(allPhrases));
 
     const handleGetNewPhrase = () => {
@@ -16,7 +20,6 @@ const HomePage = ({ notify }) => {
 
     const addToFlashCards = async () => {
         /** check if the current phrase is already a flashcard, if so notify the user and return */
-        const { email } = auth;
         try {
             await addUserFlashcard(currentPhrase.id);
             notify(true, 'Flashcard added!');
@@ -44,7 +47,7 @@ const HomePage = ({ notify }) => {
                     />
                     <div className='home-page-btns'>
                         <Button label="Next phrase" className="next-phrase-btn btn" onClick={handleGetNewPhrase} />
-                        <Button label="Add to flashcards" className="add-flashcard-btn btn" onClick={addToFlashCards} />
+                        <Button label={auth.isAuthenticated ? 'Add to flashcards' : 'Log In'} className="add-flashcard-btn btn" onClick={auth.isAuthenticated ? addToFlashCards : () => navigate('/login')} />
                     </div>
               </>
             )}
