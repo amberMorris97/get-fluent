@@ -40,6 +40,9 @@ const NavLinks = ({ notify }) => {
             <Link to="/profile">
               Profile
             </Link>
+            <Link to="/flashcards">
+              Flashcards
+            </Link>
             <Link to="/" onClick={handleLogOut}>
               Logout
             </Link>
