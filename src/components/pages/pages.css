@@ -127,9 +127,12 @@
 }
 
 .user-profile-page {
+   
+}
+
+.user-profile-content-wrapper {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr;
     align-items: start;
     gap: 24px;
     margin: 0 auto;
@@ -138,13 +141,18 @@
 
 .user-profile-content-box {
     border: 1px solid;
-    border-radius: 12px;;
+    border-radius: 12px;
     grid-row-start: 2;
-    grid-column: 1/3;
+    grid-column: 1/2;
     width: 50vw;
     height: 65vh;
     overflow-y: scroll;
     padding: 40px 20px;
+}
+
+.preview-card-inner {
+    display: flex;
+    flex-direction: column;
 }
 
 .quiz-score-display-wrapper {
@@ -154,13 +162,82 @@
 .user-flashcards-box {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    gap: 25px;
+    padding: 40px 10px;
 }
 
-.user-flashcard-preview {
-    border: 1px solid;
+.user-profile-content-box-btns {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+.user-profile-content-box-btns .active {
+    background-color: #A2D729;
 }
 
+.preview-card {
+    border: 1px solid #995FA3   ;
+    border-radius: 15px;
+    width: 15vw;
+    height: 35vh;
+    position: relative;
+    box-shadow: 10px 20px 1px;
+}
 
+.preview-card-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    height: 100%;
+    gap: 1em;
+}
+
+.preview-card-inner .icon-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 25px;
+}
+
+.preview-card h2 {
+    font-size: x-large;
+}
+
+.preview-card h3 {
+    font-size: large;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.preview-card-inner .flashcard-status-box {
+    position: absolute;
+    bottom: 0;
+    padding: 35px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.mastered-btn,
+.needs-work-btn {
+    grid-row: 2;
+}
+
+.preview-card-x,
+.needs-work-btn {
+    grid-column: 3;
+}
+
+.quiz-score {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 4px;
+    border-bottom: 1px solid #e4dcc4;
+}
 
 @media (max-width: 767px) {
     .about-page p {

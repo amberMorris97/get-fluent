@@ -26,15 +26,13 @@ const UserFlashcardPreview = ({ flashcard }) => {
     };
   
     return (
-        <div className="user-flashcard-preview">
-            <Card
-                type="preview"
-                phrase={flashcard.phrase}
-                onClick={handleStatusClick}
-                onIconClick={handleDeleteFlashcard}
-                flashcardId={flashcard.flashcardId}
-            />
-        </div>
+        <Card
+            type="preview"
+            phrase={flashcard.phrase}
+            onClick={handleStatusClick}
+            onIconClick={handleDeleteFlashcard}
+            flashcardId={flashcard.flashcardId}
+        />
     );
 };
 

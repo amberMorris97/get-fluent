@@ -12,7 +12,7 @@ const UserProfilePage = () => {
 
     const filteredFlashcards = userFlashcards?.filter((flashcard) => {
         if (statusFilter === 'all') return true;
-        return flashcard.status.toLowerCase() === statusFilter;
+        return flashcard.status.toLowerCase() === statusFilter.toLowerCase();
     });
 
     if (isFlashcardsLoading) {
@@ -26,28 +26,34 @@ const UserProfilePage = () => {
     return (
         <section className="user-profile-page">
             <h1>Profile</h1>
-            <div className="user-profile-content-box">
-                <div className="user-profile-content-box-btns">
-                    <Button 
-                        label="All"
-                        onClick={() => setStatusFilter('all')}
-                    />
-                    <Button 
-                        label="Mastered"
-                        onClick={() => setStatusFilter('mastered')}
-                    />
-                    <Button 
-                        label="Needs Review"
-                        onClick={() => setStatusFilter('needs_work')}
-                    />
+            <div className="user-profile-content-wrapper">
+                <h2>My Flashcards</h2>
+                <div className="user-profile-content-box">
+                    <div className="user-profile-content-box-btns">
+                        <Button 
+                            label="All"
+                            onClick={() => setStatusFilter('all')}
+                            className={statusFilter === 'all' ? 'active' : ''}
+                            />
+                        <Button 
+                            label="Mastered"
+                            onClick={() => setStatusFilter('MASTERED')}
+                            className={statusFilter === 'MASTERED' ? 'active' : ''}
+                            />
+                        <Button 
+                            label="Needs Work"
+                            onClick={() => setStatusFilter('NEEDS_WORK')}
+                            className={statusFilter === 'NEEDS_WORK' ? 'active' : ''}
+                            />
+                    </div>
+                    <div className="user-flashcards-box">
+                        {flashcardsDisplay}
+                    </div>
                 </div>
-                <div className="user-flashcards-box">
-                    {flashcardsDisplay}
+                <div className="quiz-score-display-wrapper">
+                    <h2>QUIZ SCORES</h2>
+                    <QuizScoreDisplay userQuizScores={userQuizScores} />
                 </div>
-            </div>
-
-            <div className="quiz-score-display-wrapper">
-                <QuizScoreDisplay userQuizScores={userQuizScores} />
             </div>
         </section>
     );

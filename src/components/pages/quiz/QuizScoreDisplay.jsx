@@ -9,7 +9,7 @@ const QuizScoreDisplay = () => {
 
     const navigate = useNavigate();
    
-    const renderQuizScore = userQuizScores.map((score) => {
+    const renderQuizScore = userQuizScores?.reverse().map((score) => {
         return <QuizScore key={`${score.id}-quiz-score`} score={score.score} length={score.quizLength} createdAt={score.createdAt} />
     });
 

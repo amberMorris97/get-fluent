@@ -209,10 +209,11 @@
 }
 
 .status-btn {
-    width: 75px;
+    width: 125px;
     height: 25px;
     border: none;
     box-shadow: none;
+    font-size: large;
 }
 
 @media (max-width: 300px) {
