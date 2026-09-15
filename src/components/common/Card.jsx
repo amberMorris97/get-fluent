@@ -44,8 +44,8 @@ const Card = ({ type, phrase, flipped, onClick, flashcardId, onIconClick }) => {
                     <h3>{english}</h3>
                     {renderPronunciation}
                     <div className='flashcard-status-box'>
-                        <i className='fa-solid fa-circle-check preview-card-check'></i>
-                        <i className='fa-solid fa-circle-xmark preview-card-x'></i>
+                        <i className='fa-solid fa-circle-check preview-card-check' onClick={() => onClick('MASTERED')}></i>
+                        <i className='fa-solid fa-circle-xmark preview-card-x' onClick={() => onClick('NEEDS_WORK')}></i>
                         <Button
                             label="Mastered"
                             onClick={() => onClick('MASTERED')}

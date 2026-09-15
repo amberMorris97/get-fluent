@@ -21,7 +21,7 @@ const UserProfilePage = () => {
 
     const flashcardsDisplay = filteredFlashcards.map((flashcard) => {
         return <UserFlashcardPreview key={`${flashcard.flashcardId}-flashcard-preview`} flashcard={flashcard} />
-    });    
+    });
     
     return (
         <section className="user-profile-page">
@@ -34,17 +34,17 @@ const UserProfilePage = () => {
                             <Button 
                                 label="All"
                                 onClick={() => setStatusFilter('all')}
-                                className={statusFilter === 'all' ? 'active' : ''}
+                                className={`${statusFilter === 'all' ? 'active' : ''} all-filter-btn`}
                             />
                             <Button 
                                 label="Mastered"
                                 onClick={() => setStatusFilter('MASTERED')}
-                                className={statusFilter === 'MASTERED' ? 'active' : ''}
+                                className={`${statusFilter === 'MASTERED' ? 'active' : ''} mastered-filter-btn`}
                             />
                             <Button 
                                 label="Needs Work"
                                 onClick={() => setStatusFilter('NEEDS_WORK')}
-                                className={statusFilter === 'NEEDS_WORK' ? 'active' : ''}
+                                className={`${statusFilter === 'NEEDS_WORK' ? 'active' : ''} needs-work-filter-btn`}
                             />
                         </div>
                         <div className="my-flashcards-display">
@@ -52,7 +52,7 @@ const UserProfilePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="quiz-score-display-container">
+                <div className="quiz-score-display-section">
                     <h2>QUIZ SCORES</h2>
                     <QuizScoreDisplay userQuizScores={userQuizScores} />
                 </div>

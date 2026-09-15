@@ -299,4 +299,10 @@
   .modal-content .close-modal-btn {
     width: 100px!important;
   }
+
+  .my-flashcards-filter-btns .btn,
+  .status-btn {
+    width: 20vw;
+  }
+  
 }
