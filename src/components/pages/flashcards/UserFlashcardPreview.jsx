@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { DataContext } from "../../../context/DataContext";
-import Button from "../../common/Button";
+import Card from "../../common/Card";
 
 const UserFlashcardPreview = ({ flashcard }) => {
     const { deleteUserFlashcard, updateUserFlashcard } = useContext(DataContext);
@@ -27,26 +27,13 @@ const UserFlashcardPreview = ({ flashcard }) => {
   
     return (
         <div className="user-flashcard-preview">
-            <button onClick={handleDeleteFlashcard}>
-                <FontAwesomeIcon icon="fa-solid fa-trash" />
-            </button>
-            <h2>{flashcard.phrase.haitianCreole}</h2>
-            <h3>{flashcard.phrase.english}</h3>
-            <h5 className="phrase-pronunciation">{flashcard.phrase.pronunciation}</h5>
-            <div className="flashcard-status-box">
-                <FontAwesomeIcon icon="fa-solid fa-circle-check" />
-                <Button
-                    label="Mastered"
-                    onClick={() => handleStatusClick('MASTERED')}
-                    className="status-btn"
-                />
-                <FontAwesomeIcon icon="fa solid fa-circle-xmark" />
-                <Button
-                    label="Needs work"
-                    onClick={() => handleStatusClick('NEEDS_WORK')}
-                    className="status-btn"
-                />
-            </div>
+            <Card
+                type="preview"
+                phrase={flashcard.phrase}
+                onClick={handleStatusClick}
+                onIconClick={handleDeleteFlashcard}
+                flashcardId={flashcard.flashcardId}
+            />
         </div>
     );
 };

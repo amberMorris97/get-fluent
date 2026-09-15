@@ -25,6 +25,7 @@ const UserProfilePage = () => {
     
     return (
         <section className="user-profile-page">
+            <h1>Profile</h1>
             <div className="user-profile-content-box">
                 <div className="user-profile-content-box-btns">
                     <Button 

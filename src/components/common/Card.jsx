@@ -1,7 +1,10 @@
 import Button from './Button';
+import IconButton from './IconButton';
 
-const Card = ({ type, phrase, flipped, onClick }) => {
+const Card = ({ type, phrase, flipped, onClick, flashcardId, onIconClick }) => {
     const { id, english, haitianCreole, pronunciation } = phrase;
+
+    const renderPronunciation = () => ( <span className="phrase-pronunciation">{pronunciation}</span> );
 
     if (type === 'flashcards') {
         return (
@@ -9,7 +12,7 @@ const Card = ({ type, phrase, flipped, onClick }) => {
                 <div className="card-inner flashcard-inner">
                     <div className="flashcard-front">
                         <h3>{haitianCreole}</h3>
-                        <span className="phrase-pronunciation">{phrase.pronunciation}</span>
+                        {renderPronunciation()}
                     </div>
                     <div className="flashcard-back">
                         <h3>{english}</h3>
@@ -23,10 +26,40 @@ const Card = ({ type, phrase, flipped, onClick }) => {
                 <div className="card-inner phrase-card-inner">
                     <h3>{haitianCreole}</h3>
                     <h4>{english}</h4>
-                    <span className="phrase-pronunciation">{phrase.pronunciation}</span>
+                    {renderPronunciation()}
               </div>
             </div>
         );
+    } else if (type === 'preview') {
+        return (
+            <div className="preview-card">
+                <div className="card-inner">
+                    <IconButton
+                        id={`${flashcardId}-preview-del`}
+                        ariaLabel="Delete"
+                        handleClick={onIconClick}>
+                        <i className="fa-solid fa-trash"></i>
+                    </IconButton>
+                    <h3>{haitianCreole}</h3>
+                    <h4>{english}</h4>
+                    {renderPronunciation}
+                    <div className='flashcard-status-box'>
+                        <i className='fa-solid fa-circle-check'></i>
+                        <Button
+                            label="Mastered"
+                            onClick={() => onClick('MASTERED')}
+                            className='status-btn'
+                        />
+                        <i className='fa-solid fa-circle-xmark'></i>
+                        <Button
+                            label="Needs work"
+                            onClick={() => onClick('NEEDS_WORK')}
+                            className='status-btn'
+                        />
+                    </div>
+                </div>
+            </div>
+        )
     } else {
         return (
             <div className={`card flashcard ${flipped ? 'flipped' : ''}`} onClick={onClick}>
