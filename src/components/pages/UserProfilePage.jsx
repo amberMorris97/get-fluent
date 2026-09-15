@@ -26,31 +26,33 @@ const UserProfilePage = () => {
     return (
         <section className="user-profile-page">
             <h1>Profile</h1>
-            <div className="user-profile-content-wrapper">
-                <h2>My Flashcards</h2>
-                <div className="user-profile-content-box">
-                    <div className="user-profile-content-box-btns">
-                        <Button 
-                            label="All"
-                            onClick={() => setStatusFilter('all')}
-                            className={statusFilter === 'all' ? 'active' : ''}
+            <div className="user-profile-content-grid">
+                <div className="my-flashcards-section">
+                    <h2>MY FLASHCARDS</h2>
+                    <div className="my-flashcards-container">
+                        <div className="my-flashcards-filter-btns">
+                            <Button 
+                                label="All"
+                                onClick={() => setStatusFilter('all')}
+                                className={statusFilter === 'all' ? 'active' : ''}
                             />
-                        <Button 
-                            label="Mastered"
-                            onClick={() => setStatusFilter('MASTERED')}
-                            className={statusFilter === 'MASTERED' ? 'active' : ''}
+                            <Button 
+                                label="Mastered"
+                                onClick={() => setStatusFilter('MASTERED')}
+                                className={statusFilter === 'MASTERED' ? 'active' : ''}
                             />
-                        <Button 
-                            label="Needs Work"
-                            onClick={() => setStatusFilter('NEEDS_WORK')}
-                            className={statusFilter === 'NEEDS_WORK' ? 'active' : ''}
+                            <Button 
+                                label="Needs Work"
+                                onClick={() => setStatusFilter('NEEDS_WORK')}
+                                className={statusFilter === 'NEEDS_WORK' ? 'active' : ''}
                             />
-                    </div>
-                    <div className="user-flashcards-box">
-                        {flashcardsDisplay}
+                        </div>
+                        <div className="my-flashcards-display">
+                            {flashcardsDisplay}
+                        </div>
                     </div>
                 </div>
-                <div className="quiz-score-display-wrapper">
+                <div className="quiz-score-display-container">
                     <h2>QUIZ SCORES</h2>
                     <QuizScoreDisplay userQuizScores={userQuizScores} />
                 </div>
