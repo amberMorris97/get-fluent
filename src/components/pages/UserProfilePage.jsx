@@ -5,7 +5,7 @@ import Button from "../common/Button";
 import UserFlashcardPreview from "./flashcards/UserFlashcardPreview";
 import QuizScoreDisplay from "./quiz/QuizScoreDisplay";
 
-const UserProfilePage = () => {
+const UserProfilePage = ({ notify }) => {
     const { auth } = useContext(AuthContext);
     const { userFlashcards, isFlashcardsLoading, userQuizScores } = useContext(DataContext);
     const [statusFilter, setStatusFilter] = useState('all');
@@ -20,7 +20,7 @@ const UserProfilePage = () => {
     }
 
     const flashcardsDisplay = filteredFlashcards.map((flashcard) => {
-        return <UserFlashcardPreview key={`${flashcard.flashcardId}-flashcard-preview`} flashcard={flashcard} />
+        return <UserFlashcardPreview key={`${flashcard.flashcardId}-flashcard-preview`} flashcard={flashcard} notify={notify} />
     });
     
     return (

@@ -3,15 +3,15 @@ import { useContext } from "react";
 import { DataContext } from "../../../context/DataContext";
 import Card from "../../common/Card";
 
-const UserFlashcardPreview = ({ flashcard }) => {
+const UserFlashcardPreview = ({ flashcard, notify }) => {
     const { deleteUserFlashcard, updateUserFlashcard } = useContext(DataContext);
 
     const handleDeleteFlashcard = async () => {
         try {
             await deleteUserFlashcard(flashcard.flashcardId);
+            notify(true, "Flashcard has been deleted.");
         } catch(error) {
-            // TODO: handle error gracefully using modal context
-            console.error(error);
+            notify(false, "Error deleting flashcard.");
         }
     };
 

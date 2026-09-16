@@ -19,7 +19,7 @@ import UserHeader from './components/layout/UserHeader';
 import UserProfilePage from './components/pages/UserProfilePage';
 import { DataContext } from './context/DataContext';
 import QuizPage from './components/pages/quiz/QuizPage';
-import QuizResults from './components/pages/quiz/QuizResults';
+import QuizResultsPage from './components/pages/quiz/QuizResultsPage';
 
 import './App.css';
 import { ModalContext } from './context/ModalContext';
@@ -71,10 +71,10 @@ function App() {
                 <HomePage notify={notify} />
               } />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/profile" element={<UserProfilePage />} />
+              <Route path="/profile" element={<UserProfilePage notify={notify} />} />
               <Route path="/flashcards" element={<FlashcardPage notify={notify} />} />
               <Route path="/quiz" element={<QuizPage notify={notify} />} />
-              <Route path="/quizResults" element={<QuizResults />} />
+              <Route path="/quizResults" element={<QuizResultsPage />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         )}

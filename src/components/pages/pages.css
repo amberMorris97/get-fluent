@@ -84,10 +84,15 @@
 }
 
 .quiz-page {
-    display: grid;
-    grid-template-columns: repeat(3, 2fr);
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 12px;
+}
+
+.quiz-page h1 {
+    padding: 12px;
 }
 
 .quiz-content-box {
@@ -115,18 +120,143 @@
     width: 25vw;
 }
 
+.quiz-content-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    border-radius: 12px;
+    border: 1px solid #995FA3;
+    box-shadow: 10px 20px 1px rgba(0, 0, 0, 0.25);
+    padding: 24px;
+    position: relative;
+}
+
+.quiz-content-box img {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.quiz-ht-phrase h2 {
+    font-weight: bold!important;
+}
+
+.quiz-content-box h2 {
+    font-weight: normal;
+    text-align: center;
+}
+
+.question-answer-input {
+    border-radius: 15px;
+    width: 75%;
+    height: 20vh;
+    padding: 12px;
+}
+
+.quiz-score {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 4px;
+    border-bottom: 1px solid #e4dcc4;
+}
+
+.quiz-score-display-box {
+    position: relative;
+}
+
+.quiz-score-display-pagination-btns {
+    display: flex;
+    gap: 1em;
+    padding: 12px;
+}
+
+.take-quiz-btn-container {
+    position: absolute;
+    bottom: 0;
+    padding: 25px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.quiz-score-take-quiz-btn {
+    background-color: #A2D729;
+}
+
+.quiz-results-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    padding: 24px;
+}
+
+.quiz-results-content-box {
+    border: 1px solid #995FA3;
+    border-radius: 15px;
+    height: 50vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    box-shadow: 10px 20px 1px rgba(0, 0, 0, 0.25);
+}
+
+.score-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #1b2140;
+}
+
+.score-circle-inner {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: #Fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #1b2140;
+}
+
+.quiz-result-btns {
+    display: flex;
+    gap: 2em;
+}
+
+.quiz-result-btns .btn {
+    background-color: #A2D729;
+}
+
 .progress-bar-wrapper {
-    width: 100%;
-    height: 10px;
+    width: 75%;
+    height: 5vh;
     background: #F5EFDD;
-    border: 1px solid #e4dcc4;
-    border-radius: 20px;
+    border: 1px solid black;
+    border-radius: 40px;
     overflow: hidden;
+    margin: auto;
+    margin-top: 30px;
 }
 
 .progress-bar {
     height: 100%;
-    background-color: #16348C;
+    background-color: #A2D729;
     border-radius: 20px;
 }
 
@@ -225,15 +355,6 @@
     grid-column: 3;
 }
 
-.quiz-score {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 12px 4px;
-    border-bottom: 1px solid #e4dcc4;
-}
-
-
 @media(max-width: 1663px) {
     .my-flashcards-display {
         grid-template-columns: 1fr 1fr;
@@ -277,6 +398,18 @@
         justify-content: center;
         align-items: center;
     }
+
+    .quiz-score-display-box {
+        width: 50vw;
+    }
+
+    .quiz-result-btns {
+        flex-direction: column;
+    }
+
+    .quiz-result-btns .btn {
+        width: 35vw;
+    }
 }
 
 @media (max-width: 766px) {
@@ -286,6 +419,10 @@
 
     .my-flashcards-filter-btns {
         gap: 3em;
+    }
+
+    .quiz-content-box {
+        gap: 1.5em;
     }
 }
 
@@ -299,6 +436,15 @@
 @media (max-width: 500px) {
     .my-flashcards-section {
         width: 90vw;
+    }
+
+    .quiz-score-display-box {
+        width: 90vw;
+    }
+
+    .quiz-score-display-pagination-btns {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -341,4 +487,5 @@
         display: flex!important;
         gap: 2em;
     }
+
 }
