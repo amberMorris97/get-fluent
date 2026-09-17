@@ -41,9 +41,9 @@ const AllPhrasesPage = ({ allPhrases, flashcardPhraseIds, userFlashcards, notify
                         const isSelected = flashcardPhraseIds.includes(phrase.id);
                         return (
                             <tr key={phrase.id}>
-                                <td className="phrase-cell">{phrase.haitianCreole}</td>
-                                <td className="translation-cell">{phrase.english}</td>
-                                <td className="pronunciation-cell">{phrase.pronunciation}</td>
+                                <td className="phrase-cell" data-label="Phrase">{phrase.haitianCreole}</td>
+                                <td className="translation-cell" data-label="Translation">{phrase.english}</td>
+                                <td className="pronunciation-cell" data-label="Pronunciation">{phrase.pronunciation}</td>
                                 <td>
                                     <Button
                                         label={`${isSelected ? "Remove flashcard" : "Add flashcard"}`}

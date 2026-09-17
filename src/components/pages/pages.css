@@ -470,6 +470,40 @@
     }
 }
 
+@media(max-width: 640px) {
+    .all-phrases-page thead {
+        display: none;
+    }
+
+    .all-phrases-page table,
+    .all-phrases-page tbody,
+    .all-phrases-page tr,
+    .all-phrases-page td {
+        display: block;
+        width: 100%;
+    }
+
+    .all-phrases-page tr {
+        margin-bottom: 16px;
+        border: 2px solid #1a1a2e;
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    .all-phrases-page td {
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        padding: 8px 0;
+    }
+
+    .all-phrases-page td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 12px;
+    }
+}
+
 @media (max-width: 620px) {
     .preview-card {
         height: 40vh;
