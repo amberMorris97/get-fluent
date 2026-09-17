@@ -9,7 +9,8 @@ export const DataContext = createContext();
 export const DataContextProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isFlashcardsLoading, setIsFlashcardsLoading] = useState(true);
-
+    const [quizScoresPage, setQuizScoresPage] = useState(0);
+    const [quizScoreHasNext, setQuizScoreHasNext] = useState(false);
     const [allPhrases, setAllPhrases] = useState(null);
     const [userFlashcards, setUserFlashcards] = useState(null);
     const [userQuizScores, setUserQuizScores] = useState(null);
@@ -54,7 +55,7 @@ export const DataContextProvider = ({ children }) => {
         } catch (error) {
             throw error;
         } finally {
-            fetchUserFlashcards(email);
+            fetchUserFlashcards();
         }
     };
 
@@ -64,14 +65,15 @@ export const DataContextProvider = ({ children }) => {
         } catch(error) {
             throw error;
         } finally {
-            fetchUserFlashcards(email);
+            fetchUserFlashcards();
         }
     };
 
-    const fetchQuizScores = async () => {
+    const fetchQuizScores = async (page = quizScoresPage) => {
         try {
-            let response = await requestQuizScores(email);
-            setUserQuizScores(response.data);
+            let response = await requestQuizScores(email, page);
+            setUserQuizScores(response.data.scores);
+            setQuizScoreHasNext(response.data.hasNextPage);
         } catch(error) {
             throw error;
         } 
@@ -79,7 +81,7 @@ export const DataContextProvider = ({ children }) => {
 
     const submitQuizScore = async (score, quizLength) => {
         try {
-            await requestSubmitQuizScore(mail, score, quizLength);
+            await requestSubmitQuizScore(email, score, quizLength);
         } catch(error) {
             throw error;
         } finally {
@@ -88,12 +90,24 @@ export const DataContextProvider = ({ children }) => {
         }
     };
 
+    const nextQuizScoresPage = () => {
+        if (!quizScoreHasNext) return;
+        const next = quizScoresPage + 1;
+        setQuizScoresPage(next);
+        fetchQuizScores(next);
+    };
+
+    const prevQuizScoresPage = () => {
+        const prev = Math.max(0, quizScoresPage - 1);
+        setQuizScoresPage(prev);
+        fetchQuizScores(prev);
+    }
+
     const updateUserFlashcard = async (flashcardStatus, flashcardId) => {
         try {
             await requestUpdateFlashcardStatus(email, flashcardStatus, flashcardId);
             fetchUserFlashcards(email);
         } catch (error) {
-            console.error(error)
             throw error;
         }
     };
@@ -104,8 +118,8 @@ export const DataContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (isAuthenticated && allPhrases !== null) {
-            fetchUserFlashcards(email);
-            fetchQuizScores(email);
+            fetchUserFlashcards();
+            fetchQuizScores(quizScoresPage);
         }
     }, [isAuthenticated, allPhrases]);
 
@@ -118,10 +132,15 @@ export const DataContextProvider = ({ children }) => {
             setAllPhrases,
             addUserFlashcard,
             userFlashcards,
+            fetchUserFlashcards,
             deleteUserFlashcard,
             submitQuizScore,
             userQuizScores,
             updateUserFlashcard,
+            nextQuizScoresPage,
+            prevQuizScoresPage,
+            quizScoreHasNext,
+            quizScoresPage,
         }}>
             {!isLoading && children}
         </DataContext.Provider>

@@ -1,11 +1,15 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router';
+import { ModalContext } from '../../context/ModalContext';
 
-const Header = ({ setIsOpen, NavMenu, notify }) => {
+const Header = ({ NavMenu, notify, modalContent }) => {
     const navigate = useNavigate();
+
+    const { handleOpenModal } = useContext(ModalContext);
 
     const onLogoClick = () => {
         navigate('/');
-        setIsOpen(true);
+        handleOpenModal(modalContent, 'INFO', 'info-modal');
     };
 
     return (

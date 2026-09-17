@@ -5,11 +5,10 @@ import { DataContext } from "../../../context/DataContext";
 import Button from "../../common/Button";
 
 const QuizScoreDisplay = () => {
-    const { userQuizScores } = useContext(DataContext);
-
+    const { userQuizScores, quizScoresPage, nextQuizScoresPage, prevQuizScoresPage, quizScoreHasNext } = useContext(DataContext);
     const navigate = useNavigate();
    
-    const renderQuizScore = userQuizScores.map((score) => {
+    const renderQuizScore = userQuizScores?.reverse().map((score) => {
         return <QuizScore key={`${score.id}-quiz-score`} score={score.score} length={score.quizLength} createdAt={score.createdAt} />
     });
 
@@ -20,10 +19,25 @@ const QuizScoreDisplay = () => {
     return (
         <div className="quiz-score-display-box">
             {renderQuizScore}
-            <Button
-              label="Take Quiz"
-              onClick={handleTakeQuiz}
-            />
+            <div className="quiz-score-display-pagination-btns">
+                <Button
+                    label="Previous"
+                    onClick={prevQuizScoresPage}
+                    disabled={quizScoresPage === 0}
+                />
+                <Button
+                    label="Next"
+                    onClick={nextQuizScoresPage}
+                    disabled={!quizScoreHasNext}
+                />
+            </div>
+            <div className="take-quiz-btn-container">
+                <Button
+                label="Take Quiz"
+                onClick={handleTakeQuiz}
+                className="quiz-score-take-quiz-btn"
+                />
+            </div>
         </div>
     );
 };

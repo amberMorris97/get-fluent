@@ -2,7 +2,6 @@ import { useState, useEffect, useContext, use } from "react";
 import { useNavigate } from "react-router";
 import { DataContext } from "../../../context/DataContext";
 import QuizCard from "./QuizCard";
-import Button from "../../common/Button";
 import { checkAnswer } from "./util/checkAnswer";
 import { shuffle } from "./util/shuffle";
 import { ModalContext } from "../../../context/ModalContext";
@@ -15,7 +14,6 @@ const QuizPage = ({ notify }) => {
     const [submitting, setSubmitting] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [feedback, setFeedback] = useState(null);
     const [showNext, setShowNext] = useState(false);
     const [score, setScore] = useState(0);
     const [userAnswer, setUserAnswer] = useState('');
@@ -29,9 +27,13 @@ const QuizPage = ({ notify }) => {
 
     const modalContent = () => {
         const { phrase } = questions[currentIndex];
-        const questionInfo = `${phrase.haitianCreole} means ${phrase.english}`;
+        const questionInfo = `"${phrase.haitianCreole}" means "${phrase.english}"`;
 
-        return ( <p>{questionInfo}</p> );
+        return ( 
+            <div className="quiz-modal-content">
+                <p>{questionInfo}</p>
+            </div>
+        );
     };
 
     const handleStartQuiz = () => {
@@ -72,30 +74,28 @@ const QuizPage = ({ notify }) => {
         setShowNext(true);
     };
 
-    if (isLoading) {
+    if (isLoading || !userFlashcards) {
         return (
             // TODO: Implement loading spinner
             <div>Loading...</div>
         );
     };
-
+   
     return (
         <div className="quiz-page">
-            Quiz Page
-            {!quizStarted ? (
-                <Button label="Start Quiz" onClick={handleStartQuiz} />
-            ) : (
-                <QuizCard 
-                    questions={questions}
-                    currentIndex={currentIndex}
-                    handleInputChange={handleInputChange}
-                    handleSubmitAnswer={handleSubmitAnswer}
-                    handleNextQuestion={handleNextQuestion}
-                    showNext={showNext}
-                    userAnswer={userAnswer}
-                    submitting={submitting}
-                />
-            )}
+            <h1>Flashcard Quiz</h1>
+            <QuizCard 
+                questions={questions}
+                currentIndex={currentIndex}
+                handleInputChange={handleInputChange}
+                handleSubmitAnswer={handleSubmitAnswer}
+                handleNextQuestion={handleNextQuestion}
+                showNext={showNext}
+                userAnswer={userAnswer}
+                submitting={submitting}
+                quizStarted={quizStarted}
+                handleStartQuiz={handleStartQuiz}
+            />
         </div>
     );
 };

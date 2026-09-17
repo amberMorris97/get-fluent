@@ -3,7 +3,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import Input from '../../common/forms/inputs/Input';
 import InputErrorMessage from '../../common/forms/inputs/InputErrorMessage';
 import FormWrapper from './FormWrapper';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import FormButton from '../../common/forms/inputs/FormButton';
 import { requestLogin } from '../../../services/authService';
 import { setEmailInStorage, setTokenInStorage } from '../../../services/storageService';
@@ -78,7 +78,7 @@ const LoginPage = ({ notify }) => {
     return (
         <div className="login-page">
             <h2>Log In</h2>
-            <FormWrapper subtitle={subtitle}>
+            <FormWrapper className="form-wrapper" subtitle={subtitle}>
                 <form className="user-login-form" onSubmit={handleSubmit}>
                     <Input 
                       id="email"
@@ -114,6 +114,7 @@ const LoginPage = ({ notify }) => {
                       msg={apiError}
                     />
                 </form>
+                <span className="auth-reroute-text">Need an account? Sign up <Link to="/register">here</Link>.</span>
             </FormWrapper>
         </div>
     );

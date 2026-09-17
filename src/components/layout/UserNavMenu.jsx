@@ -10,7 +10,7 @@ import { removeTokenFromStorage } from '../../services/storageService';
 
 library.add(fas)
 
-const NavLinks = ({ notify }) => {
+const NavLinks = ({ notify, toggleNavBar }) => {
     const { setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleLogOut = async () => {
@@ -31,16 +31,16 @@ const NavLinks = ({ notify }) => {
 }
     return (
         <div className='nav-links'>
-            <Link to="/">
+            <Link to="/" onClick={toggleNavBar}>
               Get Fluent
             </Link>
-            <Link to="/about">
+            <Link to="/about" onClick={toggleNavBar}>
               About
             </Link>
-            <Link to="/profile">
+            <Link to="/profile" onClick={toggleNavBar}>
               Profile
             </Link>
-            <Link to="/flashcards">
+            <Link to="/flashcards" onClick={toggleNavBar}>
               Flashcards
             </Link>
             <Link to="/" onClick={handleLogOut}>
@@ -63,7 +63,7 @@ const UserNavMenu = ({ notify }) => {
     return (
         <nav className="nav-menu">
             <div className={`nav-container ${isOpen ? 'open' : ''}`}>
-                <NavLinks notify={notify} />
+                <NavLinks notify={notify} toggleNavBar={toggleNavBar} />
             </div>
             <span className="nav-toggle" onClick={toggleNavBar}>{toggleIcon}</span>
         </nav>
