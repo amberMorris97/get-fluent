@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import {useEffect, useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router';
 import toast, { Toaster } from 'react-hot-toast';
 import HomePage from './components/pages/HomePage';
@@ -28,14 +28,14 @@ function App() {
   const { auth } = useContext(AuthContext);
 
   const { isLoading, allPhrases } = useContext(DataContext);
-  const { isModalOpen, handleOpenModal, handleCloseModal } = useContext(ModalContext);
+  const { handleOpenModal } = useContext(ModalContext);
 
   const notify = (successStatus, message) => {
     if (successStatus) return toast.success(message);
     return toast.error(message);
   };
 
-  const renderResourceData = resourceData.map((resource, idx) => {
+    const renderResourceData = resourceData.map((resource, idx) => {
     return (
       <ResourceLink
         key={idx}
@@ -43,8 +43,28 @@ function App() {
         description={resource.description}
         url={resource.url}
       />
-    );
-  });
+      );
+    });
+
+    const modalContent = (
+      <div className="modal-inner">
+          <span className="before-you-start">BEFORE YOU START</span>
+          <h2 className="haiti-aid-title">Haiti is facing an ongoing humanitarian crisis</h2>
+          <p className="haiti-aid-paragraph">
+            Armed violence and displacement have disrupted daily life for millions
+            of people in Haiti, and access to food, healthcare, and safety remains limited
+            in many areas. If you'd like to help, here are a few vetted organiztions working
+            on the ground:
+          </p>
+          <div className="haiti-aid-links">
+            {renderResourceData}
+          </div>
+      </div>
+  );
+
+  useEffect(() => {
+    handleOpenModal(modalContent, 'INFO', 'intro-modal');
+  }, []);
 
   return (
     <div className="app-container">
@@ -84,24 +104,4 @@ function App() {
   );
 };
 
-export default App;              
-
-
-/**
- * <>
-          <Modal className="intro-modal" open={isOpen} onClose={() => setIsOpen(false)}>
-          <div className="modal-inner">
-            <span className="before-you-start">BEFORE YOU START</span>
-            <h2 className="haiti-aid-title">Haiti is facing an ongoing humanitarian crisis</h2>
-            <p className="haiti-aid-paragraph">
-              Armed violence and displacement have disrupted daily life for millions
-              of people in Haiti, and access to food, healthcare, and safety remains limited
-              in many areas. If you'd like to help, here are a few vetted organiztions working
-              on the ground:
-            </p>
-            <div className="haiti-aid-links">
-              {renderResourceData}
-            </div>
-          </div>
-        </Modal>
- */
+export default App;

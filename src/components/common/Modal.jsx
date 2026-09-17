@@ -6,6 +6,7 @@ import IconButton from './IconButton';
 const VARIANT_CONFIG = { 
     CORRECT: { icon: 'fa-check', className: 'modal-correct' },
     WRONG: { icon: 'fa-xmark', className: 'modal-wrong' },
+    INFO: { icon: 'fa-info', className: 'info-modal'},
 };
 
 const Modal = () => {
@@ -46,7 +47,7 @@ const Modal = () => {
                     </div>
                 )}
 
-                {modalTitle && <h3>{modalTitle === 'CORRECT' ? 'Correct!' : modalTitle === 'WRONG' ? 'WRONG' : modalTitle}</h3>}
+                {modalTitle !== 'INFO' && <h3>{modalTitle === 'CORRECT' ? 'Correct!' : modalTitle === 'WRONG' ? 'WRONG' : modalTitle}</h3>}
                 <div className='modal-body'>
                     {modalContent}
                 </div>

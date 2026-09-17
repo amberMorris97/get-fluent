@@ -55,7 +55,7 @@ export const DataContextProvider = ({ children }) => {
         } catch (error) {
             throw error;
         } finally {
-            fetchUserFlashcards(email);
+            fetchUserFlashcards();
         }
     };
 
@@ -65,7 +65,7 @@ export const DataContextProvider = ({ children }) => {
         } catch(error) {
             throw error;
         } finally {
-            fetchUserFlashcards(email);
+            fetchUserFlashcards();
         }
     };
 
@@ -108,7 +108,6 @@ export const DataContextProvider = ({ children }) => {
             await requestUpdateFlashcardStatus(email, flashcardStatus, flashcardId);
             fetchUserFlashcards(email);
         } catch (error) {
-            console.error(error)
             throw error;
         }
     };

@@ -126,10 +126,6 @@
     height: 35vh;
 }
 
-.close-modal-icon {
-    color: #fff;
-}
-
 .modal-status-icon {
     width: 80px;
     height: 80px;
@@ -160,6 +156,26 @@
     line-height: 1.4;
 }
 
+.info-modal {
+    background: #F5EFDD;
+    color: black;
+    height: 75vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.haiti-aid-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.info-modal.close-modal-icon {
+    color: black;
+}
 
 .org-link {
     cursor: pointer;

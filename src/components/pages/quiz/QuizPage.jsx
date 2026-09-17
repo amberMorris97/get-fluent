@@ -2,7 +2,6 @@ import { useState, useEffect, useContext, use } from "react";
 import { useNavigate } from "react-router";
 import { DataContext } from "../../../context/DataContext";
 import QuizCard from "./QuizCard";
-import Button from "../../common/Button";
 import { checkAnswer } from "./util/checkAnswer";
 import { shuffle } from "./util/shuffle";
 import { ModalContext } from "../../../context/ModalContext";
@@ -15,7 +14,6 @@ const QuizPage = ({ notify }) => {
     const [submitting, setSubmitting] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [feedback, setFeedback] = useState(null);
     const [showNext, setShowNext] = useState(false);
     const [score, setScore] = useState(0);
     const [userAnswer, setUserAnswer] = useState('');
