@@ -308,7 +308,7 @@
 }
 
 .preview-card {
-    border: 1px solid #995FA3   ;
+    border: 1px solid #995FA3;
     border-radius: 15px;
     width: 15vw;
     height: 45vh;
@@ -332,6 +332,11 @@
     top: 0;
     right: 0;
     padding: 25px;
+    cursor: pointer;
+}
+
+.preview-card-inner i {
+    cursor: pointer;
 }
 
 .preview-card h2 {

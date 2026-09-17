@@ -20,8 +20,9 @@ const UserFlashcardPreview = ({ flashcard, notify }) => {
 
         try {
             await updateUserFlashcard(status, flashcard.flashcardId);
+            notify(true, "Flashcard status updated: " + (status === 'NEEDS_WORK' ? 'NEEDS WORK' : 'MASTERED'));
         } catch (error) {
-            // TODO: Give feedback to user
+            notify(false, "Error updating flashcard");
         }
     };
   
