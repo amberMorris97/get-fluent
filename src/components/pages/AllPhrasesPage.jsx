@@ -23,8 +23,8 @@ const AllPhrasesPage = ({ allPhrases}) => {
                 <tbody>
                     {allPhrases.map((phrase) => (
                         <tr key={phrase.id}>
-                            <td className="phrase-cell">{phrase.phrase}</td>
-                            <td className="translation-cell">{phrase.translation}</td>
+                            <td className="phrase-cell">{phrase.haitianCreole}</td>
+                            <td className="translation-cell">{phrase.english}</td>
                             <td className="pronunciation-cell">{phrase.pronunciation}</td>
                         </tr>
                     ))}

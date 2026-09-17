@@ -11,6 +11,7 @@ const QuizCard = ({ quizStarted, handleStartQuiz, questions, currentIndex, userA
                 <Button
                     label="Start Quiz"
                     onClick={handleStartQuiz}
+                    className="start-quiz-btn"
                 />
             ) : (
                 <>
@@ -32,7 +33,7 @@ const QuizCard = ({ quizStarted, handleStartQuiz, questions, currentIndex, userA
                     <Button 
                         label={showNext ? "Next" : "Submit Answer"}
                         onClick={showNext ? handleNextQuestion : handleSubmitAnswer}
-                        disabled={submitting}
+                        disabled={submitting || userAnswer.length <= 0}
                         className="quiz-action-btn"
                     />
                 </>

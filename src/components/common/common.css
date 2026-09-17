@@ -120,8 +120,8 @@
     align-items: center;
     gap: 1em;
     padding: 2.5em 2em 2em;
-    background-color: #2b2b2b;
-    color: #fff;
+    background-color: rgba(245, 239, 221, 0.1);
+    color: black;
     text-align: center;
     height: 35vh;
 }
@@ -159,11 +159,11 @@
 .info-modal {
     background: #F5EFDD;
     color: black;
-    height: 75vh;
+    height: 80vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
 }
 
 .haiti-aid-links {
@@ -241,6 +241,14 @@
     border: none;
     box-shadow: none;
     font-size: large;
+}
+
+.start-quiz-btn {
+    background-color: #A2D729;
+}
+
+.close-modal-icon {
+    cursor: pointer;
 }
 
 @media (max-width: 300px) {
@@ -331,5 +339,12 @@
   .status-btn {
     width: 20vw;
   }
+
+}
+
+@media(max-width: 555px) {
+    .quiz-results-content-box {
+        width: 75vw!important;
+    }
 
 }

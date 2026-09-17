@@ -40,10 +40,11 @@ import { ModalContext } from '../../context/ModalContext';
   );
 
 
+
     return (
         <footer className="footer">
             <ul className='footer-list'>
-                <li onClick={() => handleOpenModal(resourceContent, 'Learning Resources', 'learning-resources')}>Resources</li>
+                <li onClick={() => handleOpenModal(resourceContent, 'INFO', 'info-modal')}>Resources</li>
                 <li className='all-phrases-link'>
                     <Link to="/all-phrases">
                       All Phrases

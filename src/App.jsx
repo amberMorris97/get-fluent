@@ -63,14 +63,14 @@ function App() {
   );
 
   useEffect(() => {
-    handleOpenModal(modalContent, 'INFO', 'intro-modal');
+    handleOpenModal(modalContent, 'INFO', 'info-modal');
   }, []);
 
   return (
     <div className="app-container">
       <Toaster />
       <Modal />
-      {auth.isAuthenticated ? <UserHeader notify={notify} /> : <PublicHeader />}
+      {auth.isAuthenticated ? <UserHeader notify={notify} modalContent={modalContent} /> : <PublicHeader modalContent={modalContent} />}
       {isLoading ? (
         <div>Loading...</div>
       ) : !auth.isAuthenticated ? (
