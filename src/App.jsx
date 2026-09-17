@@ -27,8 +27,10 @@ import { ModalContext } from './context/ModalContext';
 function App() {
   const { auth } = useContext(AuthContext);
 
-  const { isLoading, allPhrases } = useContext(DataContext);
+  const { isLoading, allPhrases, userFlashcards } = useContext(DataContext);
   const { handleOpenModal } = useContext(ModalContext);
+
+  const flashcardPhraseIds = userFlashcards.map((flashcard) => flashcard.phraseId);
 
   const notify = (successStatus, message) => {
     if (successStatus) return toast.success(message);
@@ -79,7 +81,13 @@ function App() {
               <HomePage />
             } />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/all-phrases" element={<AllPhrasesPage allPhrases={allPhrases} />} />
+            <Route path="/all-phrases" element={
+              <AllPhrasesPage 
+                allPhrases={allPhrases} 
+                flashcardPhraseIds={flashcardPhraseIds} 
+                userFlashcards={userFlashcards} 
+                notify={notify} />} 
+              />
             <Route path="/login" element={<LoginPage notify={notify} />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="*" element={<Navigate to="/" />} />        
@@ -93,6 +101,13 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/profile" element={<UserProfilePage notify={notify} />} />
               <Route path="/flashcards" element={<FlashcardPage notify={notify} />} />
+              <Route path="/all-phrases" element={
+                <AllPhrasesPage 
+                  allPhrases={allPhrases} 
+                  flashcardPhraseIds={flashcardPhraseIds} 
+                  userFlashcards={userFlashcards} 
+                  notify={notify} />} 
+                />
               <Route path="/quiz" element={<QuizPage notify={notify} />} />
               <Route path="/quizResults" element={<QuizResultsPage />} />
               <Route path="*" element={<Navigate to="/" />} />

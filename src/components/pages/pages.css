@@ -380,6 +380,26 @@
     text-align: center;
 }
 
+.all-phrases-page table {
+    border-collapse: separate;
+    border-spacing: 4px 12px;
+}
+
+.all-phrases-page th {
+    padding: 8px 16px;
+    text-align: left;
+}
+
+.all-phrases-page td {
+    padding: 16px 20px;
+    border: 2px solid #1a1a2e;
+    border-radius: 10px;
+}
+
+.all-phrases-page button {
+    background-color: #A2D729;
+}
+
 @media(max-width: 1663px) {
     .my-flashcards-display {
         grid-template-columns: 1fr 1fr;
