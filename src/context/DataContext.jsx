@@ -85,7 +85,7 @@ export const DataContextProvider = ({ children }) => {
         } catch(error) {
             throw error;
         } finally {
-            fetchQuizScores(email);
+            fetchQuizScores();
         }
     };
 
